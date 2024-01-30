@@ -2,12 +2,27 @@ import React from 'react'
 import { createRoot } from "react-dom/client";
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import LoginPage from './pages/LoginPage';
+import Dashboard from './pages/Main/MainPages/Dashboard';
+import Main from './pages/Main/Main';
+import Monitoring from './pages/Main/MainPages/Monitoring';
+
+const isLogin = true;
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <LoginPage />,
-  }
+    element: isLogin ? <Main /> : <LoginPage />,
+    children: [
+      {
+        path: "dashboard",
+        element: <Dashboard />
+      },
+      {
+        path: "monitoring",
+        element: <Monitoring />
+      },
+    ]
+  },
 ])
 const App = () => {
   return <RouterProvider router={router} />
