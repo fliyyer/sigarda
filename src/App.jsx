@@ -1,32 +1,29 @@
 import React from 'react'
-import { createRoot } from "react-dom/client";
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import LoginPage from './pages/LoginPage';
-import Dashboard from './pages/Main/MainPages/Dashboard';
-import Main from './pages/Main/Main';
-import Monitoring from './pages/Main/MainPages/Monitoring';
 import ForgotPasswordPage from './pages/ForgotPasswordPage';
+import DashboardMonev from './pages/Monev/DashboardMonev';
+import Dashboard from './pages/Monev/Dashboard';
 
-const isLogin = true;
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: isLogin ? <Main /> : <LoginPage />,
-    children: [
-      {
-        path: "dashboard",
-        element: <Dashboard />
-      },
-      {
-        path: "monitoring",
-        element: <Monitoring />
-      },
-    ]
+    element: <LoginPage />,
   },
   {
     path: "/forgot-password",
     element: <ForgotPasswordPage />,
+  },
+  {
+    path: "/dashboard",
+    element: <DashboardMonev />,
+    children: [
+      {
+        index: true,
+        element: <Dashboard />
+      }
+    ]
   }
 ])
 const App = () => {

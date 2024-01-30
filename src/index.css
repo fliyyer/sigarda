@@ -11,3 +11,45 @@
   box-sizing: border-box;
   scroll-behavior: smooth;
 }
+/* Add this CSS to your stylesheets */
+.custom-icon-color {
+  color: #457EFF; /* Set the color for the success icon */
+}
+
+.custom-confirm-button {
+  width: 400px;
+  border-radius: 40px;
+  background-color: #457EFF !important; /* Set the background color for the confirm button */
+  border-color: #457EFF !important; /* Set the border color for the confirm button */
+  color: #ffffff !important; /* Set the text color for the confirm button */
+}
+
+div:where(.swal2-icon).swal2-success .swal2-success-ring {
+  position: absolute;
+  z-index: 2;
+  top: -0.25em;
+  left: -0.25em;
+  box-sizing: content-box;
+  width: 100%;
+  height: 100%;
+  border: 0.25em solid #457EFF;
+  border-radius: 50%;
+}
+
+div:where(.swal2-icon).swal2-success [class^=swal2-success-line] {
+  display: block;
+  position: absolute;
+  z-index: 2;
+  height: 0.3125em;
+  border-radius: 0.125em;
+  background-color: #457EFF;
+}
+
+div:where(.swal2-icon).swal2-success [class^=swal2-success-line] {
+  display: block;
+  position: absolute;
+  z-index: 2;
+  height: 0.3125em;
+  border-radius: 0.125em;
+  background-color: #457EFF;
+}

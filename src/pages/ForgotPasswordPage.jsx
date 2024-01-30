@@ -2,10 +2,14 @@ import React, { useState, useEffect } from 'react';
 import LoginIcon from '../assets/icons/login.svg';
 import Sigarda from '../assets/icons/sigarda.svg';
 import { VerificationModal } from '../components/ui/VerificationModal';
+import { NewPasswordModal } from '../components/ui/NewPasswordModal';
 
 const ForgotPasswordPage = () => {
     const [showVerificationModal, setShowVerificationModal] = useState(false);
+    const [showSetNewPasswordModal, setShowSetNewPasswordModal] = useState(false);
     const [timer, setTimer] = useState(30);
+    const [userEmail, setUserEmail] = useState('');
+    const [verificationCode, setVerificationCode] = useState('');
 
     useEffect(() => {
         let countdown;
@@ -20,10 +24,17 @@ const ForgotPasswordPage = () => {
         };
     }, [showVerificationModal, timer]);
 
-    const handleContinue = (code) => {
-        console.log('Verification Code:', code);
-        setShowVerificationModal(false);
-        setTimer(30);
+    const handleContinueVerification = () => {
+        setTimeout(() => {
+            setShowVerificationModal(false);
+            setShowSetNewPasswordModal(true);
+        }, 2000);
+    };
+
+    const handleSetNewPassword = () => {
+        setTimeout(() => {
+            setShowSetNewPasswordModal(false);
+        }, 2000);
     };
 
     return (
@@ -40,7 +51,14 @@ const ForgotPasswordPage = () => {
                     </p>
                     <div className="mt-8">
                         <label htmlFor="email" className="text-[#333333] text-[15px] leading-[20px] tracking-[0.3px] font-normal">E-mail</label>
-                        <input type="text" id="username" placeholder="ex.. monev@balmon.com" className="w-full border bg-[#4D4D4D] bg-opacity-10  px-[32px] py-[12px] rounded-[40px]" />
+                        <input
+                            type="text"
+                            id="username"
+                            placeholder="ex.. monev@balmon.com"
+                            className="w-full border bg-[#4D4D4D] bg-opacity-10  px-[32px] py-[12px] rounded-[40px]"
+                            value={userEmail}
+                            onChange={(e) => setUserEmail(e.target.value)}
+                        />
                     </div>
                     <button
                         type="button"
@@ -52,14 +70,18 @@ const ForgotPasswordPage = () => {
                     <VerificationModal
                         show={showVerificationModal}
                         onClose={() => setShowVerificationModal(false)}
-                        onContinue={handleContinue}
+                        onContinue={handleContinueVerification}
                         timer={timer}
+                    />
+                    <NewPasswordModal
+                        show={showSetNewPasswordModal}
+                        onClose={() => setShowSetNewPasswordModal(false)}
+                        onSetNewPassword={handleSetNewPassword}
                     />
                 </form>
             </div>
         </div>
     );
 };
-
 
 export default ForgotPasswordPage;
