@@ -5,6 +5,7 @@ import LoginPage from './pages/LoginPage';
 import Dashboard from './pages/Main/MainPages/Dashboard';
 import Main from './pages/Main/Main';
 import Monitoring from './pages/Main/MainPages/Monitoring';
+import ForgotPasswordPage from './pages/ForgotPasswordPage';
 
 const isLogin = true;
 
@@ -23,6 +24,10 @@ const router = createBrowserRouter([
       },
     ]
   },
+  {
+    path: "/forgot-password",
+    element: <ForgotPasswordPage />,
+  }
 ])
 const App = () => {
   return <RouterProvider router={router} />
