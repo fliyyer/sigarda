@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { FaPlus } from 'react-icons/fa';
 import { identifikasi } from '../../../utils/identifikasi';
 import { Link } from 'react-router-dom';
+import { InitMonitoringContext } from '../../../pages/Monev/Monitoring';
 
 const getStatus = (status) => {
     switch (status) {
@@ -16,9 +17,11 @@ const getStatus = (status) => {
     }
   };
 
-  const data = identifikasi.data
 
 const Identifikasi = () => {
+  const MonitoringContext = useContext(InitMonitoringContext)
+  const { value } = MonitoringContext.identifikasiPage.table
+  console.log(value)
   return (
     <div>
       <div>
@@ -44,7 +47,7 @@ const Identifikasi = () => {
               </tr>
             </thead>
                 {
-                    data.map((item) => (
+                    value.map((item) => (
                         <tbody className='bg-white'>
                 <tr>
                     <td className='px-6 text-[#676F82] text-center text-sm py-4 whitespace-nowrap'>{item.id}</td>
