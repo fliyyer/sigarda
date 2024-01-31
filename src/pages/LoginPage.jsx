@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { RiEyeLine, RiEyeOffLine } from 'react-icons/ri';
 import LoginIcon from '../assets/icons/login.svg'
 
 const LoginPage = () => {
     const [rememberMe, setRememberMe] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
+    const navigate = useNavigate();
 
     const handleRememberToggle = () => {
         setRememberMe(!rememberMe);
@@ -15,13 +16,17 @@ const LoginPage = () => {
         setShowPassword(!showPassword);
     };
 
+    const handleLogin = () => {
+        navigate('/dashboard');
+    }
+
     return (
         <div className="flex h-screen">
             <div className="w-1/2 bg-[#F6F8FF] px-[89px] py-12 flex items-center justify-center">
                 <img src={LoginIcon} alt="Sigarda" className="w-[442px] h-[532px] " />
             </div>
             <div className="w-1/2 bg-darker flex items-center justify-center">
-                <form className="w-[456px] bg-[#fff] p-12 rounded-[40px]">
+                <form className="bg-[#fff] p-12 rounded-[40px]">
                     <h2 className="text-[20px] leading-[28px] tracking-[0.3px] font-semibold mb-[24px]">Selamat Datang di SIGARDA</h2>
                     <div className="mb-4">
                         <label htmlFor="username" className="text-[#333333] text-[15px] leading-[20px] tracking-[0.3px] font-normal mb-2">Username</label>
@@ -53,10 +58,10 @@ const LoginPage = () => {
                         </div>
                         <Link to="/forgot-password" className="text-sm hover:underline text-main-color">Lupa Password?</Link>
                     </div>
-                    <button type="button" className="bg-main-color hover:bg-darker duration-300 ease-in-out w-full text-white my-[32px] p-2 rounded-[40px]">Login</button>
+                    <button onClick={handleLogin} type="button" className="bg-main-color hover:bg-darker duration-300 ease-in-out w-full text-white my-[32px] p-2 rounded-[40px]">Login</button>
                     <div className='border-b border-[#E5E5E5]'></div>
                     <p className='text-center mt-6 text-sm'>Belum Punya Akun? <Link to="/register" className="text-main-color hover:underline">Kontak Administrator</Link></p>
-                    <footer className='flex justify-end text-xs mt-44 text-[#666666]'>© AT 2024</footer>
+                    <footer className='flex justify-end text-xs mt-16 2xl:mt-44 text-[#666666]'>© AT 2024</footer>
                 </form>
             </div>
         </div>
