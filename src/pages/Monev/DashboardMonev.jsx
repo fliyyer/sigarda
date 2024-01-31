@@ -7,7 +7,7 @@ const DashboardMonev = () => {
         <div className="flex h-screen overflow-hidden">
             <Sidebar />
             <div className="flex flex-col flex-grow">
-                <div className="p-2 md:p-8 flex-grow overflow-y-hidden">
+                <div className="p-2 md:p-8 overflow-auto flex-grow">
                     <Outlet />
                 </div>
             </div>
