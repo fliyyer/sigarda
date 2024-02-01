@@ -17,6 +17,7 @@ import ValidasiIsr from './pages/Monev/Validasi';
 import MicrowaveLink from './components/layout/ValidasiIsr/MicrowaveLink';
 import MicrowaveNonLink from './components/layout/ValidasiIsr/MicrowaveNonLink';
 import Dokumen from './pages/Monev/Dokumen';
+import Akun from './pages/Monev/Akun';
 
 
 const router = createBrowserRouter([
@@ -93,6 +94,10 @@ const router = createBrowserRouter([
       {
         path: "dokumen",
         element: <Dokumen />
+      },
+      {
+        path: "akun",
+        element: <Akun />
       }
     ]
   }
