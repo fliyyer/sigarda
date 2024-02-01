@@ -9,6 +9,7 @@ import Pengukuran from "./pengukuran.svg?react"
 import Validasi from "./validasi.svg?react"
 import Dokumen from "./dokumen.svg?react"
 import Akun from "./akun.svg?react"
+import FolderIcons from "./folder.svg?react"
 
 export {
     DashboardIcon,
@@ -21,5 +22,6 @@ export {
     Pengukuran,
     Validasi,
     Dokumen,
-    Akun
+    Akun,
+    FolderIcons,
 }

@@ -6,7 +6,7 @@ import { identifikasi } from "../../utils/identifikasi";
 
 export const InitMonitoringContext = createContext();
 
-const Monitoring = () => {
+const ValidasiIsr = () => {
   const location = useLocation();
   const isLinkActive = (to) => {
     return location.pathname === to;
@@ -43,40 +43,29 @@ const Monitoring = () => {
 
   return (
     <div className="px-10">
-      <h1 className="text-[#5E5E5E] text-2xl font-bold">Monitoring</h1>
+      <h1 className="text-[#5E5E5E] text-2xl font-bold">Validasi ISR</h1>
       {!isAddRoute && (
         <div className="flex mt-[23px] justify-between">
           <div className="flex list-none bg-[#F6F8FF] rounded-[40px] py-4 px-[30px] text-[16px] 2xl:text-lg text-[#676F82] font-medium space-x-3">
             <Link
-              to="/monitoring"
+              to="/validasi"
               className={`cursor-pointer ${
-                isLinkActive("/monitoring")
+                isLinkActive("/validasi")
                   ? "text-[#334158] font-semibold underline"
                   : ""
               }`}
             >
-              Target
+              Microwave Link
             </Link>
             <Link
-              to="/monitoring/identifikasi"
+              to="/validasi/non-link"
               className={`cursor-pointer ${
-                isLinkActive("/monitoring/identifikasi")
+                isLinkActive("/validasi/non-link")
                   ? "text-[#334158] font-semibold underline"
                   : ""
               }`}
             >
-              Identifikasi
-            </Link>
-            <Link
-              to="/monitoring/sims"
-              className={`cursor-pointer ${
-                isLinkActive("/monitoring/sims") ||
-                isLinkActive("/monitoring/sims/mataram")
-                  ? "text-[#334158] font-semibold underline"
-                  : ""
-              }`}
-            >
-              SIMS
+              Non Microwave Link
             </Link>
           </div>
           <div className="relative">
@@ -102,4 +91,4 @@ const Monitoring = () => {
   );
 };
 
-export default Monitoring;
+export default ValidasiIsr;

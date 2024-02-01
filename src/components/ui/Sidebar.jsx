@@ -40,7 +40,7 @@ const Sidebar = () => {
       icon: Validasi,
       largeIcon: LargeDashboard,
       navTitle: 'Validasi ISR',
-      navTo: 'validasi-isr',
+      navTo: 'validasi',
     },
     {
       icon: Dokumen,

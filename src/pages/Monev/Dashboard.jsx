@@ -5,7 +5,7 @@ import Rekap from '../../assets/image/rekap.svg'
 
 const Dashboard = () => {
     return (
-        <div className='p-10'>
+        <div className='px-10'>
             <h1 className="text-[24px] font-bold leading-[16px] text-[#5E5E5E]">Dashboard</h1>
             <div className='grid py-10 grid-cols-3 gap-[26px]'>
                 <CardCapaian title="Capaian PK Monitoring" persentase="22%" value="2 dari 9" kota="Kabupaten/Kota di Provinsi Bali telah termonitor" to='/' />

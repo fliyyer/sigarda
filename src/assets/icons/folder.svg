@@ -1,0 +1,24 @@
+<svg width="31" height="29" viewBox="0 0 31 29" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="31" height="29" fill="#E9E9E9"/>
+<g id="DOKUMEN">
+<rect width="1728" height="1117" transform="translate(-451 -432)" fill="white"/>
+<rect id="Rectangle 179" x="-95" y="-150" width="1298" height="371" rx="40" fill="#F6F8FF"/>
+<g id="files">
+<g id="folder 2" clip-path="url(#clip0_0_1)">
+<rect id="base" x="-25.408" y="-13.92" width="1204.3" height="58.936" rx="5.56" fill="white" stroke="#E9EFF4" stroke-width="1.112"/>
+<g id="folder icon" clip-path="url(#clip1_0_1)">
+<path id="Page 1" fill-rule="evenodd" clip-rule="evenodd" d="M27.968 9.50602H26.5423V6.74594C26.5423 5.98485 25.9029 5.36591 25.1167 5.36591L15.85 5.36591C15.6832 5.36591 15.5221 5.30932 15.3938 5.20651L11.3151 1.91581L3.01925 1.91581C2.23301 1.91581 1.59361 2.53475 1.59361 3.29585L1.59361 8.12598L27.968 8.12598V9.50602L1.59361 9.50602H0.167969L0.167969 3.29585C0.167969 1.77366 1.44677 0.535767 3.01925 0.535767L11.5731 0.535767C11.7399 0.535767 11.901 0.592348 12.0293 0.695161L16.1081 3.98587L25.1167 3.98587C26.6892 3.98587 27.968 5.22376 27.968 6.74594V9.50602Z" fill="#4676FB" stroke="white" stroke-width="0.2224"/>
+<rect id="Rectangle-path" x="0.167969" y="6.99463" width="30.024" height="20.4522" rx="2.224" fill="#E0EEFD" stroke="#ADC0F8" stroke-width="1.112"/>
+</g>
+</g>
+</g>
+</g>
+<defs>
+<clipPath id="clip0_0_1">
+<rect width="1206.52" height="61.16" fill="white" transform="translate(-26.5199 -15.0321)"/>
+</clipPath>
+<clipPath id="clip1_0_1">
+<rect width="30.024" height="27.8" fill="white" transform="translate(0.167969 0.535767)"/>
+</clipPath>
+</defs>
+</svg>
