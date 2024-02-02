@@ -24,7 +24,7 @@ const MicrowaveNonLink = () => {
   return (
     <div>
       <div>
-        <Link to='/monitoring/add' className="flex gap-2 hover:underline mt-[15px] text-sm pl-6 items-center">
+        <Link to='/validasi/add-microwave' className="flex gap-2 hover:underline mt-[15px] text-sm pl-6 items-center">
           <span className="bg-main-color w-[32px] text-[18px] h-[32px] flex justify-center items-center rounded-full text-white">
             <FaPlus />
           </span>

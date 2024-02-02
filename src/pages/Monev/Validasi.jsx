@@ -12,7 +12,7 @@ const ValidasiIsr = () => {
     return location.pathname === to;
   };
 
-  const isAddRoute = location.pathname === "/monitoring/add";
+  const isAddRoute = ["/validasi/add-microwave", "/validasi/add-non-microwave"].includes(location.pathname);
 
   const [tableIdentifikasi, setTableIdentifikasi] = useState(identifikasi.data);
   const [searchTable, setSearchTable] = useState("");

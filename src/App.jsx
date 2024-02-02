@@ -1,34 +1,39 @@
-import React from 'react'
-import { RouterProvider, createBrowserRouter } from 'react-router-dom';
-import LoginPage from './pages/LoginPage';
-import ForgotPasswordPage from './pages/ForgotPasswordPage';
-import DashboardMonev from './pages/Monev/DashboardMonev';
-import Dashboard from './pages/Monev/Dashboard';
-import Monitoring from './pages/Monev/Monitoring';
-import MonitoringTarget from './components/layout/Monitoring/MonitoringTarget';
-import Identifikasi from './components/layout/Monitoring/Identifikasi';
-import Sims from './components/layout/Monitoring/Sims';
-import SimsJatim from './components/layout/Monitoring/SimsJatim';
-import SimsMataram from './components/layout/Monitoring/SimsMataram';
-import AddFrekuensi from './components/ui/AddFrekuensi';
-import Pengukuran from './pages/Monev/Pengukuran';
-import ValidasiIsr from './pages/Monev/Validasi';
-import MicrowaveLink from './components/layout/ValidasiIsr/MicrowaveLink';
-import MicrowaveNonLink from './components/layout/ValidasiIsr/MicrowaveNonLink';
-import Dokumen from './pages/Monev/Dokumen';
-import Akun from './pages/Monev/Akun';
-import DashboardPelayanan from './pages/Pelayanan/DashboardPelayanan';
-import DashboardPel from './pages/Pelayanan/Dashboard';
-import Perangkat from './pages/Pelayanan/Perangkat';
-import PerangkatList from './components/layout/Perangkat/PerangkatList';
-import PeminjamanList from './components/layout/Perangkat/PeminjamanList';
-import Unar from './pages/Pelayanan/Unar';
-import Tamu from './pages/Pelayanan/Tamu';
-import AddPemimnjam from './components/ui/pelayanan/AddPemimnjam';
-import AddPerangkat from './components/ui/pelayanan/addPerangkat';
-import ListTamu from './components/layout/Tamu/ListTamu';
-import AddTamu from './components/ui/tamu/AddTamu';
-
+import React from "react";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import LoginPage from "./pages/LoginPage";
+import ForgotPasswordPage from "./pages/ForgotPasswordPage";
+import DashboardMonev from "./pages/Monev/DashboardMonev";
+import Dashboard from "./pages/Monev/Dashboard";
+import Monitoring from "./pages/Monev/Monitoring";
+import MonitoringTarget from "./components/layout/Monitoring/MonitoringTarget";
+import Identifikasi from "./components/layout/Monitoring/Identifikasi";
+import Sims from "./components/layout/Monitoring/Sims";
+import SimsJatim from "./components/layout/Monitoring/SimsJatim";
+import SimsMataram from "./components/layout/Monitoring/SimsMataram";
+import AddFrekuensi from "./components/ui/AddFrekuensi";
+import Pengukuran from "./pages/Monev/Pengukuran";
+import ValidasiIsr from "./pages/Monev/Validasi";
+import MicrowaveLink from "./components/layout/ValidasiIsr/MicrowaveLink";
+import MicrowaveNonLink from "./components/layout/ValidasiIsr/MicrowaveNonLink";
+import Dokumen from "./pages/Monev/Dokumen";
+import Akun from "./pages/Monev/Akun";
+import DashboardPelayanan from "./pages/Pelayanan/DashboardPelayanan";
+import DashboardPel from "./pages/Pelayanan/Dashboard";
+import Perangkat from "./pages/Pelayanan/Perangkat";
+import PerangkatList from "./components/layout/Perangkat/PerangkatList";
+import PeminjamanList from "./components/layout/Perangkat/PeminjamanList";
+import Unar from "./pages/Pelayanan/Unar";
+import Tamu from "./pages/Pelayanan/Tamu";
+import AddPemimnjam from "./components/ui/pelayanan/AddPemimnjam";
+import AddPerangkat from "./components/ui/pelayanan/addPerangkat";
+import ListTamu from "./components/layout/Tamu/ListTamu";
+import AddTamu from "./components/ui/tamu/AddTamu";
+import FrekuensiAddPage from "./components/layout/Monitoring/FrekuensiAddPage";
+import AddSimsJatim from "./components/layout/Monitoring/AddSimsJatim";
+import AddSimsMataram from "./components/layout/Monitoring/AddSimsMataram";
+import AddPengukuran from "./components/layout/Pengukuran/AddPengukuran";
+import AddMicrowave from "./components/ui/Validasi/AddMicrowave";
+import AddNonMicrowave from "./components/ui/Validasi/AddNonMicrowafe";
 
 const router = createBrowserRouter([
   {
@@ -45,11 +50,11 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <Dashboard />
+        element: <Dashboard />,
       },
       {
         path: "/dashboard",
-        element: <Dashboard />
+        element: <Dashboard />,
       },
       {
         path: "/monitoring",
@@ -57,15 +62,23 @@ const router = createBrowserRouter([
         children: [
           {
             index: true,
-            element: <MonitoringTarget />
+            element: <MonitoringTarget />,
           },
           {
             path: "identifikasi",
-            element: <Identifikasi />
+            element: <Identifikasi />,
           },
           {
             path: "add",
-            element: <AddFrekuensi />
+            element: <FrekuensiAddPage />,
+          },
+          {
+            path: "add-jatim",
+            element: <AddSimsJatim />,
+          },
+          {
+            path: "add-mataram",
+            element: <AddSimsMataram />,
           },
           {
             path: "sims",
@@ -73,19 +86,25 @@ const router = createBrowserRouter([
             children: [
               {
                 index: true,
-                element: <SimsJatim />
+                element: <SimsJatim />,
               },
               {
                 path: "mataram",
-                element: <SimsMataram />
-              }
-            ]
-          }
-        ]
+                element: <SimsMataram />,
+              },
+            ],
+          },
+        ],
       },
       {
         path: "pengukuran",
-        element: <Pengukuran />
+        element: <Pengukuran />,
+        children: [
+          {
+            path: "add",
+            element: <AddPengukuran />,
+          },
+        ],
       },
       {
         path: "validasi",
@@ -93,23 +112,31 @@ const router = createBrowserRouter([
         children: [
           {
             index: true,
-            element: <MicrowaveLink />
+            element: <MicrowaveLink />,
           },
           {
             path: "non-link",
-            element: <MicrowaveNonLink />
-          }
-        ]
+            element: <MicrowaveNonLink />,
+          },
+          {
+            path: "add-microwave",
+            element: <AddMicrowave />,
+          },
+          {
+            path: "add-non-microwave",
+            element: <AddNonMicrowave/>,
+          },
+        ],
       },
       {
         path: "dokumen",
-        element: <Dokumen />
+        element: <Dokumen />,
       },
       {
         path: "akun",
-        element: <Akun />
-      }
-    ]
+        element: <Akun />,
+      },
+    ],
   },
   {
     path: "pelayanan",
@@ -117,11 +144,11 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <DashboardPel />
+        element: <DashboardPel />,
       },
       {
         path: "dashboard",
-        element: <DashboardPel />
+        element: <DashboardPel />,
       },
       {
         path: "perangkat",
@@ -129,25 +156,25 @@ const router = createBrowserRouter([
         children: [
           {
             index: true,
-            element: <PerangkatList />
+            element: <PerangkatList />,
           },
           {
             path: "peminjaman",
-            element: <PeminjamanList />
+            element: <PeminjamanList />,
           },
           {
             path: "add",
-            element: <AddPerangkat />
+            element: <AddPerangkat />,
           },
           {
             path: "/pelayanan/perangkat/peminjaman/add-peminjaman",
-            element: <AddPemimnjam />
-          }
-        ]
+            element: <AddPemimnjam />,
+          },
+        ],
       },
       {
         path: "unar",
-        element: <Unar />
+        element: <Unar />,
       },
       {
         path: "tamu",
@@ -155,23 +182,23 @@ const router = createBrowserRouter([
         children: [
           {
             index: true,
-            element: <ListTamu />
+            element: <ListTamu />,
           },
           {
             path: "add",
-            element: <AddTamu />
-          }
-        ]
+            element: <AddTamu />,
+          },
+        ],
       },
       {
         path: "akun",
-        element: <Akun />
-      }
-    ]
-  }
-])
+        element: <Akun />,
+      },
+    ],
+  },
+]);
 const App = () => {
-  return <RouterProvider router={router} />
-}
+  return <RouterProvider router={router} />;
+};
 
-export default App
+export default App;

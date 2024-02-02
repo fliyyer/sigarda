@@ -12,7 +12,7 @@ const Monitoring = () => {
     return location.pathname === to;
   };
 
-  const isAddRoute = location.pathname === "/monitoring/add";
+  const isAddRoute = ["/monitoring/add", "/monitoring/add-jatim", "/monitoring/add-mataram"].includes(location.pathname);
 
   const [tableIdentifikasi, setTableIdentifikasi] = useState(identifikasi.data);
   const [searchTable, setSearchTable] = useState("");

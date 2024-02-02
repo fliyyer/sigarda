@@ -2,11 +2,11 @@ import React from "react";
 import { CloseButton, CloudAdd } from "../../../../assets/icons";
 
 const DragInput = ({ attribute }) => {
-  const { value, setValue, open, setOpen } = attribute;
+  const { onUpload, open, setOpen } = attribute;
 
   const handleChange = (e) => {
     const { files } = e.target;
-    setValue(files[0]);
+    onUpload(files[0]);
   };
 
   const onDragOver = (e) => {
@@ -16,7 +16,7 @@ const DragInput = ({ attribute }) => {
   const handleDrop = (e) => {
     e.preventDefault();
     const { files } = e.dataTransfer;
-    setValue(files[0]);
+    onUpload(files[0]);
   };
   return (
     <>
@@ -32,7 +32,10 @@ const DragInput = ({ attribute }) => {
                 <p className="text-[#A9ACB4]">Pilih dan unggah dokumen</p>
               </div>
               <div className="pl-20">
-                <CloseButton onClick={() => setOpen(false)} className="cursor-pointer" />
+                <CloseButton
+                  onClick={() => setOpen(false)}
+                  className="cursor-pointer"
+                />
               </div>
             </div>
             <div className="pt-6">
@@ -57,7 +60,7 @@ const DragInput = ({ attribute }) => {
                     htmlFor="upload"
                     className="py-3 rounded-lg px-6 text-white bg-[#457EFF] cursor-pointer"
                   >
-                    {value ? value.name : "Unggah File"}
+                    Unggah File
                   </label>
                   <input
                     onChange={handleChange}

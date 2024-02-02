@@ -10,7 +10,7 @@ const AddPage = ({ inputs, dragInput, submit }) => {
         className="w-[400px] bg-[#F6F8FF] p-10 rounded-[40px] flex flex-col"
       >
         {inputs.map((v) => (
-          <InputAdd inputVal={v.value} setInputVal={v.setValue} type={v.type} label={v.label} placeholder={v.placeholder} options={v.options} />
+          <InputAdd name={v.name} inputVal={v.value[v.name]} setInputVal={v.setValue} type={v.type} label={v.label} placeholder={v.placeholder} options={v.options} />
         ))}
         <div className="flex justify-end mt-4">
           <button

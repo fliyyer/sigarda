@@ -1,10 +1,18 @@
 import React from "react";
 
-const InputAdd = ({ type, inputVal, setInputVal, label, options = [], placeholder }) => {
-    const handleChangeVal = (e) => {
-        const { value } = e.target
-        setInputVal(value)
-    }
+const InputAdd = ({
+  type,
+  inputVal,
+  setInputVal,
+  label,
+  options = [],
+  placeholder,
+  name,
+}) => {
+  // const handleChangeVal = (e) => {
+  //   const { value } = e.target;
+  //   setInputVal(value);
+  // };
   return (
     <>
       {(type === "text" || !type) && (
@@ -13,10 +21,11 @@ const InputAdd = ({ type, inputVal, setInputVal, label, options = [], placeholde
             {label}
           </label>
           <input
+            name={name}
             type="text"
             value={inputVal}
             placeholder={placeholder}
-            onChange={handleChangeVal}
+            onChange={setInputVal}
             className="mt-1 p-2 w-full border placeholder:text-[#666666] shadow-sm placeholder:text-sm rounded-lg"
           />
         </div>
@@ -27,8 +36,9 @@ const InputAdd = ({ type, inputVal, setInputVal, label, options = [], placeholde
             {label}
           </label>
           <select
+            name={name}
             value={inputVal}
-            onChange={handleChangeVal}
+            onChange={setInputVal}
             className="mt-1 p-2 py-3 w-full border text-[#666666] rounded-lg"
           >
             <option className="" value="">

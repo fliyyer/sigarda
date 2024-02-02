@@ -1,38 +1,20 @@
-import React, { useContext, useState } from "react";
-import { generateId } from "../../utils/generateId";
-import { useNavigate } from "react-router-dom";
-import { InitMonitoringContext } from "../../pages/Monev/Monitoring";
+import React, { useState } from "react";
 import AddPage from "./AddPage/AddPage";
 
-const AddFrekuensi = () => {
-  const MonitoringContext = useContext(InitMonitoringContext);
-  const { setValue, value } = MonitoringContext.identifikasiPage.table;
-  const navigate = useNavigate();
+const AddFrekuensi = ({
+  onSubmit,
+  setValue,
+  onFileUpload,
+}) => {
   const [openUpload, setOpenUpload] = useState(true);
-  const [valueUpload, setValUpload] = useState(null);
-  const [formData, setFormData] = useState({
-    id: generateId(value),
+  const [valueInputs, setValueInputs] = useState({
     frekuensi: "",
     client: "",
-    service: "",
-    subservice: "",
+    servis: "",
+    subservis: "",
     kelasemisi: "",
     status: "",
   });
-
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setValue([...value, formData]);
-    navigate("/monitoring/identifikasi");
-  };
 
   const services = [
     "Amateur",
@@ -55,170 +37,75 @@ const AddFrekuensi = () => {
   const kelasemisiOptions = ["A3E", "C3F", "F3E"];
   const statusOptions = ["On Air", "Off Air", "Prelim. Cancel"];
 
+  const handleChangeInputs = (e) => {
+    const { name, value } = e.target;
+    const valObj = {
+      [name]: value,
+    };
+    const fixValue = { ...valueInputs, ...valObj }
+    setValueInputs(fixValue);
+    setValue(fixValue)
+  };
+
   return (
     <AddPage
+      submit={onSubmit}
       inputs={[
         {
+          value: valueInputs,
+          setValue: handleChangeInputs,
           type: "text",
           label: "Frekuensi",
           placeholder: "Input Frekuensi (MHz)",
+          name: "frekuensi",
         },
         {
+          value: valueInputs,
+          setValue: handleChangeInputs,
           type: "text",
           label: "Client",
           placeholder: "Input Nama Client",
+          name: "client",
         },
         {
+          value: valueInputs,
+          setValue: handleChangeInputs,
           type: "select",
           label: "Servis",
           options: services,
+          name: "servis",
         },
         {
+          value: valueInputs,
+          setValue: handleChangeInputs,
           type: "select",
           label: "Subservis",
           options: subservices,
+          name: "subservis",
         },
         {
+          value: valueInputs,
+          setValue: handleChangeInputs,
           type: "select",
           label: "Kelas Emisi",
           options: kelasemisiOptions,
+          name: "kelasemisi",
         },
         {
+          value: valueInputs,
+          setValue: handleChangeInputs,
           type: "select",
           label: "Status",
           options: statusOptions,
+          name: "status",
         },
       ]}
       dragInput={{
         open: openUpload,
         setOpen: setOpenUpload,
-        value: valueUpload,
-        setValue: setValUpload,
+        onUpload: onFileUpload,
       }}
     />
-    // <div className="container mx-auto mt-8">
-    //   <form
-    //     onSubmit={handleSubmit}
-    //     className="w-[400px] bg-[#F6F8FF] p-10 rounded-[40px] flex flex-col"
-    //   >
-    //     <div className="mb-4">
-    //       <label className="block text-base text-[#457EFF] font-medium">
-    //         Frekuensi
-    //       </label>
-    //       <input
-    //         type="text"
-    //         name="frekuensi"
-    //         value={formData.frekuensi}
-    //         placeholder="Input frekuensi (MHz)"
-    //         onChange={handleInputChange}
-    //         className="mt-1 p-2 w-full border placeholder:text-[#666666] shadow-sm placeholder:text-sm rounded-lg"
-    //       />
-    //     </div>
-    //     <div className="mb-4">
-    //       <label className="block text-base text-[#457EFF] font-medium">
-    //         Client
-    //       </label>
-    //       <input
-    //         type="text"
-    //         name="client"
-    //         placeholder="Input Nama Client"
-    //         value={formData.client}
-    //         onChange={handleInputChange}
-    //         className="mt-1 p-2 w-full border placeholder:text-[#666666] shadow-sm placeholder:text-sm rounded-lg"
-    //       />
-    //     </div>
-    //     <div className="mb-4">
-    //       <label className="block text-base text-[#457EFF] font-medium">
-    //         Servis
-    //       </label>
-    //       <select
-    //         name="service"
-    //         value={formData.service}
-    //         onChange={handleInputChange}
-    //         className="mt-1 p-2 py-3 w-full border text-[#666666] rounded-lg"
-    //       >
-    //         <option className="" value="">
-    //           Piih Servis
-    //         </option>
-    //         {services.map((service) => (
-    //           <option key={service} value={service}>
-    //             {service}
-    //           </option>
-    //         ))}
-    //       </select>
-    //     </div>
-    //     <div className="mb-4">
-    //       <label className="block text-base text-[#457EFF] font-medium">
-    //         Subservis
-    //       </label>
-    //       <select
-    //         name="subservis"
-    //         value={formData.subservice}
-    //         onChange={handleInputChange}
-    //         className="mt-1 p-2 py-3 w-full border text-[#666666] rounded-lg"
-    //       >
-    //         <option value="">Pilih Subservis</option>
-    //         {subservices.map((subservice) => (
-    //           <option
-    //             className="text-[#000] font-medium space-y-3 mt-3 rounded-sm"
-    //             key={subservice}
-    //             value={subservice}
-    //           >
-    //             {subservice}
-    //           </option>
-    //         ))}
-    //       </select>
-    //     </div>
-    //     <div className="mb-4">
-    //       <label className="block text-base text-[#457EFF] font-medium">
-    //         Kelas Emisi
-    //       </label>
-    //       <select
-    //         name="kelasemisi"
-    //         value={formData.kelasemisi}
-    //         onChange={handleInputChange}
-    //         className="mt-1 p-2 py-3 w-full border text-[#666666] rounded-lg"
-    //       >
-    //         <option className="text-[#000] font-medium space-y-3 mt-3 rounded-sm">
-    //           Pilih Kelas Emisi
-    //         </option>
-    //         {kelasemisiOptions.map((option) => (
-    //           <option key={option} value={option}>
-    //             {option}
-    //           </option>
-    //         ))}
-    //       </select>
-    //     </div>
-    //     <div className="mb-4">
-    //       <label className="block text-base text-[#457EFF] font-medium">
-    //         Status
-    //       </label>
-    //       <select
-    //         name="status"
-    //         value={formData.status}
-    //         onChange={handleInputChange}
-    //         className="mt-1 p-2 py-3 w-full border text-[#666666] rounded-lg"
-    //       >
-    //         <option className="text-[#000] font-medium space-y-3 mt-3 rounded-sm">
-    //           Select Status
-    //         </option>
-    //         {statusOptions.map((option) => (
-    //           <option key={option} value={option}>
-    //             {option}
-    //           </option>
-    //         ))}
-    //       </select>
-    //     </div>
-    //     <div className="flex justify-end mt-4">
-    //       <button
-    //         type="submit"
-    //         className="bg-[#457EFF] text-white px-5 py-3 hover:bg-darker duration-100 ease-in-out rounded-[40px]"
-    //       >
-    //         Simpan
-    //       </button>
-    //     </div>
-    //   </form>
-    // </div>
   );
 };
 
