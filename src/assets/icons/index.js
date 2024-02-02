@@ -10,6 +10,8 @@ import Validasi from "./validasi.svg?react"
 import Dokumen from "./dokumen.svg?react"
 import Akun from "./akun.svg?react"
 import FolderIcons from "./folder.svg?react"
+import CloudAdd from "./cloud-add.svg?react"
+import CloseButton from "./close.svg?react"
 
 export {
     DashboardIcon,
@@ -24,4 +26,6 @@ export {
     Dokumen,
     Akun,
     FolderIcons,
+    CloudAdd,
+    CloseButton,
 }

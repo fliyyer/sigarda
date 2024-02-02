@@ -5,8 +5,8 @@ import Rekap from '../../assets/image/rekap.svg'
 
 const Dashboard = () => {
     return (
-        <div className='px-10'>
-            <h1 className="text-[24px] font-bold leading-[16px] text-[#5E5E5E]">Dashboard</h1>
+        <div className=''>
+            <h1 className="text-2xl font-bold text-[#5E5E5E]">Dashboard</h1>
             <div className='grid py-10 grid-cols-3 gap-[26px]'>
                 <CardCapaian title="Capaian PK Monitoring" persentase="22%" value="2 dari 9" kota="Kabupaten/Kota di Provinsi Bali telah termonitor" to='/' />
                 <CardCapaian title="Capaian PK Pengukuran" persentase="82%" value="70 dari 85" kota="Stasiun Radio Siaran dan TV Digital telah terukur" to='/' />

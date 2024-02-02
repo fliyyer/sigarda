@@ -42,7 +42,7 @@ const Monitoring = () => {
   };
 
   return (
-    <div className="px-10">
+    <div className="">
       <h1 className="text-[#5E5E5E] text-2xl font-bold">Monitoring</h1>
       {!isAddRoute && (
         <div className="flex mt-[23px] justify-between">
