@@ -49,7 +49,7 @@ const Akun = () => {
     };
 
     return (
-        <div className="px-10">
+        <div className="">
             {isCropPopupOpen && (
                 <ProfilCrop
                     image={profileImage}

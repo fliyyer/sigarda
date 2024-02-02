@@ -9,7 +9,7 @@ const Dokumen = () => {
     return location.pathname === to;
   };
   return (
-    <div className="px-10">
+    <div className="">
       <h1 className="text-[#5E5E5E] text-2xl font-bold">Dokumen</h1>
       <div className="flex mt-[23px] justify-between">
           <div className="flex list-none bg-[#F6F8FF] rounded-[40px] py-4 px-[30px] text-[16px] 2xl:text-lg text-[#676F82] font-medium space-x-3">
