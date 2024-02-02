@@ -27,7 +27,7 @@ export {
     Dokumen,
     Akun,
     FolderIcons,
-    ActiveDashboard
+    ActiveDashboard,
     CloudAdd,
     CloseButton,
 }
