@@ -2,7 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const CardCapaian = (props) => {
-    const { title, persentase, value, kota, to } = props
+    const { title, persentase, value, kota, to } = props;
+
     return (
         <div className='flex flex-col relative bg-[#F6F8FF] rounded-[40px] py-[31px] px-[45px]'>
             <p className='text-lg 2xl:text-[22px] mb-8 2xl:mb-[40px] text-[#5E5E5E] leading-[16px]'>{title}</p>

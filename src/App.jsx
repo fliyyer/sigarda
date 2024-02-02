@@ -12,12 +12,22 @@ import SimsJatim from './components/layout/Monitoring/SimsJatim';
 import SimsMataram from './components/layout/Monitoring/SimsMataram';
 import AddFrekuensi from './components/ui/AddFrekuensi';
 import Pengukuran from './pages/Monev/Pengukuran';
-import { Validasi } from './assets/icons';
 import ValidasiIsr from './pages/Monev/Validasi';
 import MicrowaveLink from './components/layout/ValidasiIsr/MicrowaveLink';
 import MicrowaveNonLink from './components/layout/ValidasiIsr/MicrowaveNonLink';
 import Dokumen from './pages/Monev/Dokumen';
 import Akun from './pages/Monev/Akun';
+import DashboardPelayanan from './pages/Pelayanan/DashboardPelayanan';
+import DashboardPel from './pages/Pelayanan/Dashboard';
+import Perangkat from './pages/Pelayanan/Perangkat';
+import PerangkatList from './components/layout/Perangkat/PerangkatList';
+import PeminjamanList from './components/layout/Perangkat/PeminjamanList';
+import Unar from './pages/Pelayanan/Unar';
+import Tamu from './pages/Pelayanan/Tamu';
+import AddPemimnjam from './components/ui/pelayanan/AddPemimnjam';
+import AddPerangkat from './components/ui/pelayanan/addPerangkat';
+import ListTamu from './components/layout/Tamu/ListTamu';
+import AddTamu from './components/ui/tamu/AddTamu';
 
 
 const router = createBrowserRouter([
@@ -94,6 +104,64 @@ const router = createBrowserRouter([
       {
         path: "dokumen",
         element: <Dokumen />
+      },
+      {
+        path: "akun",
+        element: <Akun />
+      }
+    ]
+  },
+  {
+    path: "pelayanan",
+    element: <DashboardPelayanan />,
+    children: [
+      {
+        index: true,
+        element: <DashboardPel />
+      },
+      {
+        path: "dashboard",
+        element: <DashboardPel />
+      },
+      {
+        path: "perangkat",
+        element: <Perangkat />,
+        children: [
+          {
+            index: true,
+            element: <PerangkatList />
+          },
+          {
+            path: "peminjaman",
+            element: <PeminjamanList />
+          },
+          {
+            path: "add",
+            element: <AddPerangkat />
+          },
+          {
+            path: "/pelayanan/perangkat/peminjaman/add-peminjaman",
+            element: <AddPemimnjam />
+          }
+        ]
+      },
+      {
+        path: "unar",
+        element: <Unar />
+      },
+      {
+        path: "tamu",
+        element: <Tamu />,
+        children: [
+          {
+            index: true,
+            element: <ListTamu />
+          },
+          {
+            path: "add",
+            element: <AddTamu />
+          }
+        ]
       },
       {
         path: "akun",
