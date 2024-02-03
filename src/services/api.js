@@ -36,7 +36,9 @@ const header = {
 }
 
 const handleSuccess = (resp) => {
-    const { data } = resp
+    const {
+        data
+    } = resp
     return data
 }
 
@@ -57,19 +59,22 @@ const apiGet = async (url, arg) => {
 }
 const apiPost = async (url, arg) => {
     try {
-        const response = await axios.post(`${baseUrl}${url}`, arg)
-        const {
-            data
-        } = response
-        if (data.status === "error") {
-            throw data
+        const response = await axios.post(`${baseUrl}${url}`, arg, {
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+
+        if (response.data.status === "error") {
+            throw response.data;
         }
-        return handleSuccess(response)
+
+        return handleSuccess(response);
     } catch (error) {
-        console.log(error)
-        throw error
+        console.log(error);
+        throw error;
     }
-}
+};
 const apiPut = async (url, arg) => {
     try {
         const response = await axios.put(`${baseUrl}${url}`, {

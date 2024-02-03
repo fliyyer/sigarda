@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { CiSearch } from "react-icons/ci";
 import { FaPlus } from "react-icons/fa";
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, useNavigate } from "react-router-dom";
 import { identifikasi } from "../../utils/identifikasi";
+import cvTablePagination from "../../utils/tablePagination";
+import api from "../../services/api";
+import Pagination from "@mui/material/Pagination";
 
 const getStatus = (status) => {
   switch (status) {
@@ -18,7 +21,42 @@ const getStatus = (status) => {
 };
 
 const Pengukuran = () => {
-  const data = identifikasi.data;
+  const [search, setSearch] = useState("");
+  const [tableData, setTableData] = useState([]);
+  const dynamicTable = !search
+    ? tableData
+    : tableData.filter((v) =>
+        v.client.toLowerCase().includes(search.toLowerCase())
+      );
+  const [page, setPage] = useState(1);
+  const paginationTable = cvTablePagination(dynamicTable, 1);
+  const [fixTable, setFixTable] = useState([]);
+  const navigate = useNavigate()
+  const fetchTablePengukuran = async () => {
+    try {
+      // const response = await api.get("/pengukuran.php");
+      setTableData(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const handleChangePage = (event, value) => {
+    setPage(value);
+  };
+  useEffect(() => {
+    fetchTablePengukuran();
+  }, [location.pathname]);
+  useEffect(() => {
+    setFixTable(paginationTable[0] || []);
+  }, [tableData]);
+  useEffect(() => {
+    setFixTable(paginationTable[page - 1] || []);
+  }, [page]);
+  useEffect(() => {
+    setPage(1);
+    setFixTable(paginationTable[0]);
+  }, [search]);
+  useEffect(() => {}, [navigate])
   return (
     <div className="">
       <h1 className="text-[#5E5E5E] text-2xl font-bold">Pengukuran</h1>
@@ -40,7 +78,7 @@ const Pengukuran = () => {
                 type="search"
                 placeholder="Search"
                 className="pl-10 pr-4 py-3 outline-none rounded-[40px] bg-[#F6F8FF]"
-                onChange={(e) => handleChangeTable(e, location.pathname)}
+                onChange={(e) => setSearch(e.target.value)}
               />
               <div className="absolute bottom-2 inset-y-0 left-0 flex items-center pl-3">
                 <CiSearch className="w-5 mt-2 h-5 text-[#AEB8CF]" />
@@ -74,14 +112,14 @@ const Pengukuran = () => {
                   </th>
                 </tr>
               </thead>
-              {data.map((item) => (
+              {(fixTable || []).map((item) => (
                 <tbody className="bg-white">
                   <tr>
                     <td className="px-6 text-[#676F82] text-center text-sm py-4 whitespace-nowrap">
                       {item.id}
                     </td>
                     <td className="px-6 text-[#000000] text-center text-sm py-4 whitespace-nowrap">
-                      {item.frekuensi}
+                      {item.frequency}
                     </td>
                     <td className="px-6 text-[#000000] text-center text-sm py-4 whitespace-nowrap">
                       {item.client}
@@ -90,10 +128,10 @@ const Pengukuran = () => {
                       {item.service}
                     </td>
                     <td className="px-6 text-[#000000] text-center text-sm py-4 whitespace-nowrap">
-                      {item.subservis}
+                      {item.subservice}
                     </td>
                     <td className="px-6 text-[#000000] text-center text-sm py-4 whitespace-nowrap">
-                      {item.kelasemisi}
+                      {item.emission_class}
                     </td>
                     <td className="px-6 text-[#000000] text-center text-sm py-4 whitespace-nowrap">
                       {item.status && (
@@ -115,6 +153,12 @@ const Pengukuran = () => {
                 </tbody>
               ))}
             </table>
+            <Pagination
+              className="flex justify-center -mb-4 pt-3"
+              count={paginationTable.length}
+              page={page}
+              onChange={handleChangePage}
+            />
           </div>
         </div>
       )}

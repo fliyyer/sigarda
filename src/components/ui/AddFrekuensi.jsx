@@ -8,11 +8,11 @@ const AddFrekuensi = ({
 }) => {
   const [openUpload, setOpenUpload] = useState(true);
   const [valueInputs, setValueInputs] = useState({
-    frekuensi: "",
+    frequency: "",
     client: "",
-    servis: "",
-    subservis: "",
-    kelasemisi: "",
+    service: "",
+    subservice: "",
+    emission_class: "",
     status: "",
   });
 
@@ -57,7 +57,7 @@ const AddFrekuensi = ({
           type: "text",
           label: "Frekuensi",
           placeholder: "Input Frekuensi (MHz)",
-          name: "frekuensi",
+          name: "frequency",
         },
         {
           value: valueInputs,
@@ -71,17 +71,17 @@ const AddFrekuensi = ({
           value: valueInputs,
           setValue: handleChangeInputs,
           type: "select",
-          label: "Servis",
+          label: "service",
           options: services,
-          name: "servis",
+          name: "service",
         },
         {
           value: valueInputs,
           setValue: handleChangeInputs,
           type: "select",
-          label: "Subservis",
+          label: "Subservice",
           options: subservices,
-          name: "subservis",
+          name: "subservice",
         },
         {
           value: valueInputs,
@@ -89,7 +89,7 @@ const AddFrekuensi = ({
           type: "select",
           label: "Kelas Emisi",
           options: kelasemisiOptions,
-          name: "kelasemisi",
+          name: "emission_class",
         },
         {
           value: valueInputs,
