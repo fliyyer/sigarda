@@ -1,4 +1,4 @@
-import React from "react";
+import React, { createContext } from "react";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import LoginPage from "./pages/LoginPage";
 import ForgotPasswordPage from "./pages/ForgotPasswordPage";
@@ -39,6 +39,7 @@ import ListUnar from "./components/layout/Unar/ListUnar";
 import DashboardSpt from "./pages/SPT/DashboardSpt";
 import Spt from "./pages/SPT/Spt";
 import ListSpt from "./components/layout/Spt/ListSpt";
+import { getUserLogin } from "./services/api";
 
 const router = createBrowserRouter([
   {
@@ -188,8 +189,8 @@ const router = createBrowserRouter([
           {
             path: "add",
             element: <AddUnar />,
-          }
-        ]
+          },
+        ],
       },
       {
         path: "tamu",
@@ -226,14 +227,22 @@ const router = createBrowserRouter([
           {
             index: true,
             element: <ListSpt />,
-          }
-        ]
-      }
+          },
+        ],
+      },
     ],
-  }
+  },
 ]);
+
+export const ProfileContext = createContext();
+
 const App = () => {
-  return <RouterProvider router={router} />;
+  const profile = getUserLogin();
+  return (
+    <ProfileContext.Provider value={profile}>
+      <RouterProvider router={router} />
+    </ProfileContext.Provider>
+  );
 };
 
 export default App;
