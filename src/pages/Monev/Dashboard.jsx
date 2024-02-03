@@ -15,21 +15,21 @@ const Dashboard = () => {
                     persentase="22%"
                     value="2 dari 9"
                     kota="Kabupaten/Kota di Provinsi Bali telah termonitor"
-                    to='/'
+                    to='/monitoring'
                 />
                 <CardCapaian
                     title="Capaian PK Pengukuran"
                     persentase="82%"
                     value="70 dari 85"
                     kota="Stasiun Radio Siaran dan TV Digital telah terukur"
-                    to='/'
+                    to='/pengukuran'
                 />
                 <CardCapaian
                     title="Capaian PK Validasi ISR"
                     persentase="90%"
                     value="347 dari 385"
                     kota="Target ISR telah divalidasi"
-                    to='/'
+                    to='/validasi'
                 />
             </div>
             <div className='grid gap-6 md:grid-cols-1 lg:grid-cols-2 2xl:mt-8'>

@@ -49,32 +49,29 @@ const Monitoring = () => {
           <div className="flex list-none bg-[#F6F8FF] rounded-[40px] py-4 px-[30px] text-[16px] 2xl:text-lg text-[#676F82] font-medium space-x-3">
             <Link
               to="/monitoring"
-              className={`cursor-pointer ${
-                isLinkActive("/monitoring")
+              className={`cursor-pointer ${isLinkActive("/monitoring")
                   ? "text-[#334158] font-semibold underline"
                   : ""
-              }`}
+                }`}
             >
               Target
             </Link>
             <Link
               to="/monitoring/identifikasi"
-              className={`cursor-pointer ${
-                isLinkActive("/monitoring/identifikasi")
+              className={`cursor-pointer ${isLinkActive("/monitoring/identifikasi")
                   ? "text-[#334158] font-semibold underline"
                   : ""
-              }`}
+                }`}
             >
               Identifikasi
             </Link>
             <Link
               to="/monitoring/sims"
-              className={`cursor-pointer ${
-                isLinkActive("/monitoring/sims") ||
-                isLinkActive("/monitoring/sims/mataram")
+              className={`cursor-pointer ${isLinkActive("/monitoring/sims") ||
+                  isLinkActive("/monitoring/sims/mataram")
                   ? "text-[#334158] font-semibold underline"
                   : ""
-              }`}
+                }`}
             >
               SIMS
             </Link>
