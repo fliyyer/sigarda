@@ -34,6 +34,11 @@ import AddSimsMataram from "./components/layout/Monitoring/AddSimsMataram";
 import AddPengukuran from "./components/layout/Pengukuran/AddPengukuran";
 import AddMicrowave from "./components/ui/Validasi/AddMicrowave";
 import AddNonMicrowave from "./components/ui/Validasi/AddNonMicrowafe";
+import AddUnar from "./components/ui/pelayanan/AddUnar";
+import ListUnar from "./components/layout/Unar/ListUnar";
+import DashboardSpt from "./pages/SPT/DashboardSpt";
+import Spt from "./pages/SPT/Spt";
+import ListSpt from "./components/layout/Spt/ListSpt";
 
 const router = createBrowserRouter([
   {
@@ -124,7 +129,7 @@ const router = createBrowserRouter([
           },
           {
             path: "add-non-microwave",
-            element: <AddNonMicrowave/>,
+            element: <AddNonMicrowave />,
           },
         ],
       },
@@ -175,6 +180,16 @@ const router = createBrowserRouter([
       {
         path: "unar",
         element: <Unar />,
+        children: [
+          {
+            index: true,
+            element: <ListUnar />,
+          },
+          {
+            path: "add",
+            element: <AddUnar />,
+          }
+        ]
       },
       {
         path: "tamu",
@@ -196,6 +211,26 @@ const router = createBrowserRouter([
       },
     ],
   },
+  {
+    path: "spt",
+    element: <DashboardSpt />,
+    children: [
+      {
+        index: true,
+        element: <Spt />,
+      },
+      {
+        path: "list-spt",
+        element: <Spt />,
+        children: [
+          {
+            index: true,
+            element: <ListSpt />,
+          }
+        ]
+      }
+    ],
+  }
 ]);
 const App = () => {
   return <RouterProvider router={router} />;

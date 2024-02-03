@@ -89,10 +89,9 @@ const Sidebar = () => {
                       key={val.navTitle}
                       to={val.navTo}
                       className={({ isActive }) =>
-                        `${
-                          isActive
-                            ? 'bg-slate-200 text-main-color font-semibold'
-                            : 'bg-transparent'
+                        `${isActive
+                          ? 'bg-slate-200 text-main-color font-semibold'
+                          : 'bg-transparent'
                         } flex text-sm gap-x-3 items-center text-[#676F82] hover:bg-[#E3EAFF] my-1 hover:text-[#457EFF] hover:font-semibold px-4 py-2 rounded-md`
                       }>
                       <div className=''>{val.icon}</div>
@@ -116,20 +115,19 @@ const Sidebar = () => {
           </div>
         </div>
       ) : (
-        <div className="w-[7%] pl-6 h-screen flex items-center">
+        <div className="w-[70px] h-screen my-auto px-4 rounded-r-2xl bg-slate-100 flex justify-center items-center">
           <div>
             {navList.map((val) => (
               <NavLink
                 key={val.navTitle}
                 to={val.navTo}
                 className={({ isActive }) =>
-                  `${
-                    isActive
-                      ? 'bg-slate-200 text-main-color font-semibold'
-                      : 'bg-transparent'
+                  `${isActive
+                    ? 'bg-slate-300 text-main-color font-semibold'
+                    : 'bg-transparent'
                   } flex text-xl text-main-color gap-x-3 hover:bg-slate-100 items-center p-4 rounded-md`
                 }>
-                 <div className=''>{val.icon}</div>
+                <div className=''>{val.icon}</div>
               </NavLink>
             ))}
             <div

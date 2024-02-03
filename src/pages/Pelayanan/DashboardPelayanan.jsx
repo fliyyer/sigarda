@@ -6,7 +6,7 @@ const DashboardPelayanan = () => {
     return (
         <div className="flex h-screen overflow-hidden">
             <Sidebar />
-            <div className="flex flex-col w-full">
+            <div className="flex w-full">
                 <div className="p-2 md:p-8 overflow-auto flex-grow">
                     <Outlet />
                 </div>

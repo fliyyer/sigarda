@@ -1,8 +1,8 @@
 import React from 'react'
-import Sidebar from '../../components/ui/Sidebar'
 import { Outlet } from 'react-router'
+import Sidebar from '../../components/ui/Spt/Sidebar'
 
-const DashboardMonev = () => {
+const DashboardSpt = () => {
     return (
         <div className="flex h-screen overflow-hidden">
             <Sidebar />
@@ -15,4 +15,4 @@ const DashboardMonev = () => {
     )
 }
 
-export default DashboardMonev
+export default DashboardSpt

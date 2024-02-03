@@ -1,55 +1,54 @@
 import React, { useState } from 'react';
 import {
-  Akun,
-  DashboardIcon,
-  Dokumen,
-  HideSidebar,
   LargeDashboard,
-  LargeHideSidebar,
   MainLogo,
-  Monitoring,
-  Pengukuran,
   SearchIcon,
-  Validasi,
 } from '../../assets/icons';
 import { NavLink } from 'react-router-dom';
 import User from '../../assets/icons/user.png'
+import { MdDashboard } from 'react-icons/md';
+import { TbHeartRateMonitor } from "react-icons/tb";
+import { FiRadio } from "react-icons/fi";
+import { RiPassValidLine } from "react-icons/ri";
+import { IoFolderOpenOutline } from "react-icons/io5";
+import { FaUser } from "react-icons/fa6";
+import { AiOutlineMenuUnfold, AiOutlineMenuFold } from "react-icons/ai";
 
 const Sidebar = () => {
   const [isSimple, setIsSimple] = useState(false);
   const navList = [
     {
-      icon: DashboardIcon,
+      icon: <MdDashboard />,
       largeIcon: LargeDashboard,
       navTitle: 'Dashboard',
       navTo: '/dashboard',
     },
     {
-      icon: Monitoring,
+      icon: <TbHeartRateMonitor />,
       largeIcon: LargeDashboard,
       navTitle: 'Monitoring',
       navTo: 'monitoring',
     },
     {
-      icon: Pengukuran,
+      icon: <FiRadio />,
       largeIcon: LargeDashboard,
       navTitle: 'Pengukuran',
       navTo: 'pengukuran',
     },
     {
-      icon: Validasi,
+      icon: <RiPassValidLine />,
       largeIcon: LargeDashboard,
       navTitle: 'Validasi ISR',
       navTo: 'validasi',
     },
     {
-      icon: Dokumen,
+      icon: <IoFolderOpenOutline />,
       largeIcon: LargeDashboard,
       navTitle: 'Dokumen',
       navTo: 'dokumen',
     },
     {
-      icon: Akun,
+      icon: <FaUser />,
       largeIcon: LargeDashboard,
       navTitle: 'Akun',
       navTo: 'akun',
@@ -75,7 +74,7 @@ const Sidebar = () => {
                 <div className="flex items-center justify-between">
                   <MainLogo />
                   <div onClick={() => setIsSimple(true)}>
-                    <HideSidebar />
+                    <AiOutlineMenuFold className='hover:text-main-color cursor-pointer text-xl' />
                   </div>
                 </div>
                 <div className="flex bg-white items-center justify-center rounded-md border border-[#E2E4EA] px-2 py-2 gap-2 text-sm">
@@ -96,13 +95,12 @@ const Sidebar = () => {
                       key={val.navTitle}
                       to={val.navTo}
                       className={({ isActive }) =>
-                        `${
-                          isActive
-                            ? 'bg-slate-200 text-main-color font-semibold'
-                            : 'bg-transparent'
-                        } flex text-sm gap-x-3 hover:bg-[#E3EAFF] my-1 hover:text-[#457EFF] hover:font-semibold px-4 py-2 rounded-md`
+                        `${isActive
+                          ? 'bg-slate-200 text-main-color font-semibold'
+                          : 'bg-transparent'
+                        } flex text-sm gap-x-3 items-center text-[#676F82] hover:bg-[#E3EAFF] my-1 hover:text-[#457EFF] hover:font-semibold px-4 py-2 rounded-md`
                       }>
-                      <div>{<val.icon />}</div>
+                      <div className=''>{val.icon}</div>
                       <div>{val.navTitle}</div>
                     </NavLink>
                   ))}
@@ -121,25 +119,25 @@ const Sidebar = () => {
           </div>
         </div>
       ) : (
-        <div className="w-[7%] pl-6 h-screen flex items-center">
+        <div className="w-[70px] h-screen my-auto px-4 rounded-r-2xl bg-slate-100 flex justify-center items-center">
           <div>
             {navList.map((val) => (
               <NavLink
+                key={val.navTitle}
                 to={val.navTo}
                 className={({ isActive }) =>
-                  `${
-                    isActive
-                      ? 'bg-slate-200 text-main-color font-semibold'
-                      : 'bg-transparent'
-                  } flex text-sm gap-x-3 p-6 rounded-md`
+                  `${isActive
+                    ? 'bg-slate-300 text-main-color font-semibold'
+                    : 'bg-transparent'
+                  } flex text-xl text-main-color gap-x-3 hover:bg-slate-100 items-center p-4 rounded-md`
                 }>
-                <div>{<val.largeIcon />}</div>
+                <div className=''>{val.icon}</div>
               </NavLink>
             ))}
             <div
               className="flex justify-center pt-6"
               onClick={() => setIsSimple(false)}>
-              <LargeHideSidebar />
+              <AiOutlineMenuUnfold className="text-2xl text-main-color cursor-pointer" />
             </div>
           </div>
         </div>
