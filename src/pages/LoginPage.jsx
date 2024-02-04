@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { RiEyeLine, RiEyeOffLine } from "react-icons/ri";
 import LoginIcon from "../assets/icons/login.svg";
-import Axios from "axios";
 import api, {
   setTokenRemember,
   setTokenSession,
@@ -26,7 +25,6 @@ const LoginPage = () => {
 
   const handleLogin = async () => {
     setIsLoading(true);
-    console.log(rememberMe);
     try {
       const email = document.getElementById("username").value;
       const password = document.getElementById("password").value;
@@ -112,14 +110,12 @@ const LoginPage = () => {
               onClick={handleRememberToggle}
             >
               <div
-                className={`w-10 h-5  rounded-full p-[3px] transition duration-300 ease-in-out ${
-                  rememberMe ? "bg-main-color" : "bg-[#E5E5E5]"
-                }`}
+                className={`w-10 h-5  rounded-full p-[3px] transition duration-300 ease-in-out ${rememberMe ? "bg-main-color" : "bg-[#E5E5E5]"
+                  }`}
               >
                 <div
-                  className={`bg-[#F2F2F2] w-[14px] h-[14px] rounded-full shadow-md transform transition-transform duration-300 ease-in-out ${
-                    rememberMe ? "translate-x-5" : ""
-                  }`}
+                  className={`bg-[#F2F2F2] w-[14px] h-[14px] rounded-full shadow-md transform transition-transform duration-300 ease-in-out ${rememberMe ? "translate-x-5" : ""
+                    }`}
                 ></div>
               </div>
               <p className="ml-2 text-[15px] text-[#1A1A1A]">Ingat Saya</p>
@@ -134,9 +130,8 @@ const LoginPage = () => {
           <button
             onClick={handleLogin}
             type="button"
-            className={`bg-main-color hover:bg-darker duration-300 ease-in-out w-full text-white my-[32px] p-2 rounded-[40px] ${
-              isLoading ? "cursor-not-allowed opacity-50" : ""
-            }`}
+            className={`bg-main-color hover:bg-darker duration-300 ease-in-out w-full text-white my-[32px] p-2 rounded-[40px] ${isLoading ? "cursor-not-allowed opacity-50" : ""
+              }`}
             disabled={isLoading}
           >
             {isLoading ? "Logging in..." : "Login"}

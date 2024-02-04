@@ -1,11 +1,20 @@
-import React, { useState, useRef } from 'react';
-import User from '../../assets/icons/user.png';
+import React, { useState, useRef, useEffect } from 'react';
 import ProfilCrop from '../../components/ui/ProfileCrop';
+import api from '../../services/api';
+import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 const Akun = () => {
     const [profileImage, setProfileImage] = useState(null);
     const [isCropPopupOpen, setIsCropPopupOpen] = useState(false);
     const fileInputRef = useRef(null);
+    const [user, setUser] = useState({
+        id: '',
+        name: '',
+        email: '',
+        photo: '',
+    });
+
     const handleImageChange = (e) => {
         const file = e.target.files[0];
         if (file) {
@@ -37,15 +46,60 @@ const Akun = () => {
         closeCropPopup();
     };
 
-    const handleSaveChanges = () => {
-        // Save changes to local storage
-        const userData = {
-            profileImage,
-            // Add other user data fields here
-        };
+    const profile = JSON.parse(sessionStorage.getItem('user_sigarda'));
+    const fetchProfile = async () => {
+        try {
+            const response = await api.get(`/register.php?profile_id=${profile.id}`);
+            if (response.data && response.data) {
+                setUser({
+                    id: response.data.id,
+                    name: response.data.nama,
+                    email: response.data.email,
+                    photo: response.data.photo,
+                });
+            } else {
+                console.log(response.data);
+            }
+        } catch (error) {
+            console.log('Error fetching profile:', error);
+        }
+    };
 
-        localStorage.setItem('userData', JSON.stringify(userData));
-        alert('Changes saved successfully!');
+    useEffect(() => {
+        fetchProfile();
+    }, []);
+
+    const handleSaveChanges = async () => {
+        const updatedUser = {
+            id: user.id,
+            nama: user.name,
+            email: user.email,
+            photo: profileImage
+        };
+        try {
+            const response = await api.put(`/register.php?id=${user.id}`, updatedUser);
+            setUser(updatedUser);
+            setProfileImage(null);
+            Swal.fire({
+                icon: 'success',
+                title: 'Success!',
+                text: 'Profile updated successfully!',
+            });
+        } catch (error) {
+            console.error('Error:', error);
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: `Failed to save changes: ${error.message}`,
+            });
+        }
+    };
+
+    const navigate = useNavigate();
+
+    const handleLogout = () => {
+        sessionStorage.removeItem('user_sigarda');
+        navigate('/login');
     };
 
     return (
@@ -71,10 +125,14 @@ const Akun = () => {
                                     <img
                                         src={profileImage}
                                         alt=""
-                                        className="w-16 h-16"
+                                        className="w-16 rounded-full"
                                     />
                                 ) : (
-                                    <img src={User} alt="" className="w-16 h-16" />
+                                    <img
+                                        src={`http://api.sigarda.fliyyer.skom.id/photo_user/${user.photo}`}
+                                        alt=""
+                                        className="w-16 rounded-full"
+                                    />
                                 )}
                             <input
                                 ref={fileInputRef}
@@ -86,20 +144,20 @@ const Akun = () => {
                             />
                         </label>
                         <div>
-                            <p className="text-sm font-semibold">Monev</p>
-                            <span className="text-xs">Admin</span>
+                            <p className="text-sm font-semibold">{user.name}</p>
+                            <span className="text-xs">{user.name}</span>
                         </div>
                     </div>
-                    <button className="bg-[#F4485D] rounded-[40px] hover:bg-red-600 duration-100 ease-out text-sm text-white px-6 h-10">
+                    <button onClick={handleLogout} className="bg-[#F4485D] rounded-[40px] hover:bg-red-600 duration-100 ease-out text-sm text-white px-6 h-10">
                         Logout
                     </button>
                 </div>
                 <p className="mt-[34px] text-sm font-semibold">Username</p>
-                <input type="text" placeholder="Username" className="w-full p-2 border border-[#E5E5E5] py-3 rounded-md mt-2" />
+                <input type="text" value={user.name} onChange={(e) => setUser({ ...user, name: e.target.value })} className="w-full p-2 border border-[#E5E5E5] py-3 rounded-md mt-2" />
                 <p className="mt-[34px] text-sm font-semibold">Email</p>
-                <input type="text" placeholder="Email" className="w-full p-2 border border-[#E5E5E5] py-3 rounded-md mt-2" />
+                <input type="text" value={user.email} onChange={(e) => setUser({ ...user, email: e.target.value })} className="w-full p-2 border border-[#E5E5E5] py-3 rounded-md mt-2" />
                 <p className="mt-[34px] text-sm font-semibold">Role</p>
-                <select className="w-full p-2 border border-[#E5E5E5] py-3 rounded-md mt-2">
+                <select value={user.role} onChange={(e) => setUser({ ...user, role: e.target.value })} className="w-full p-2 border border-[#E5E5E5] py-3 rounded-md mt-2">
                     <option value="Monev">Monev</option>
                     <option value="TU">TU</option>
                     <option value="Pelayanan">Pelayanan</option>

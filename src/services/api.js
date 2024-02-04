@@ -5,11 +5,11 @@ export const setTokenRemember = (val) => {
 }
 
 export const setUserLogin = (val) => {
-    localStorage.setItem("user_sigarda", JSON.stringify(val))
+    sessionStorage.setItem("user_sigarda", JSON.stringify(val))
 }
 
 export const getUserLogin = () => {
-    const user = localStorage.getItem("user_sigarda")
+    const user = sessionStorage.getItem("user_sigarda")
     return JSON.parse(user)
 }
 
@@ -71,7 +71,6 @@ const apiPost = async (url, arg) => {
 
         return handleSuccess(response);
     } catch (error) {
-        console.log(error);
         throw error;
     }
 };

@@ -1,10 +1,11 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useEffect, useState } from "react";
 import { CiSearch } from "react-icons/ci";
 import { Link, useLocation } from "react-router-dom";
 import { Outlet } from "react-router-dom";
-import { identifikasi } from "../../utils/identifikasi";
+import api from "../../services/api";
 
-export const InitMonitoringContext = createContext();
+
+export const InitValiadsiContext = createContext();
 
 const ValidasiIsr = () => {
   const location = useLocation();
@@ -14,32 +15,60 @@ const ValidasiIsr = () => {
 
   const isAddRoute = ["/validasi/add-microwave", "/validasi/add-non-microwave"].includes(location.pathname);
 
-  const [tableIdentifikasi, setTableIdentifikasi] = useState(identifikasi.data);
+  const [tableLink, setTableLink] = useState([]);
+  const [tableNonLink, setTableNonLink] = useState([]);
   const [searchTable, setSearchTable] = useState("");
 
   const handleChangeTable = (e, currLocation) => {
     const { value } = e.target;
     setSearchTable(value);
-    if (currLocation === "/monitoring/identifikasi") {
-      const filteredIdentifikasi = identifikasi.data.filter(
-        (v) =>
-          v.client.toLowerCase().includes(value.toLowerCase()) ||
-          v.service.toLowerCase().includes(value.toLowerCase()) ||
-          v.subservis.toLowerCase().includes(value.toLowerCase()) ||
-          v.kelasemisi.toLowerCase().includes(value.toLowerCase())
-      );
-      setTableIdentifikasi(filteredIdentifikasi);
-    }
   };
 
-  const ContextMonitoring = {
-    identifikasiPage: {
+  const fetchTableLink = async () => {
+    try {
+      const response = await api.get("/microwave_link.php");
+      setTableLink(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  const fetchTableNonLink = async () => {
+    try {
+      const response = await api.get("/microwave_non_link.php");
+      setTableNonLink(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  useEffect(() => {
+    fetchTableLink();
+    fetchTableNonLink();
+  }, [location])
+
+  const ContextValidasi = {
+    linkPage: {
       table: {
-        value: tableIdentifikasi,
-        setValue: setTableIdentifikasi,
+        value: !searchTable
+          ? tableLink
+          : tableLink.filter((v) =>
+            v.client.toLowerCase().includes(searchTable.toLowerCase())
+          ),
+        setValue: setTableLink,
       },
     },
-  };
+    nonLinkPage: {
+      table: {
+        value: !searchTable
+          ? tableNonLink
+          : tableNonLink.filter((v) =>
+            v.client.toLowerCase().includes(searchTable.toLowerCase())
+          ),
+        setValue: setTableNonLink,
+      },
+    },
+  }
 
   return (
     <div className="">
@@ -49,21 +78,19 @@ const ValidasiIsr = () => {
           <div className="flex list-none bg-[#F6F8FF] rounded-[40px] py-4 px-[30px] text-[16px] 2xl:text-lg text-[#676F82] font-medium space-x-3">
             <Link
               to="/validasi"
-              className={`cursor-pointer ${
-                isLinkActive("/validasi")
-                  ? "text-[#334158] font-semibold underline"
-                  : ""
-              }`}
+              className={`cursor-pointer ${isLinkActive("/validasi")
+                ? "text-[#334158] font-semibold underline"
+                : ""
+                }`}
             >
               Microwave Link
             </Link>
             <Link
               to="/validasi/non-link"
-              className={`cursor-pointer ${
-                isLinkActive("/validasi/non-link")
-                  ? "text-[#334158] font-semibold underline"
-                  : ""
-              }`}
+              className={`cursor-pointer ${isLinkActive("/validasi/non-link")
+                ? "text-[#334158] font-semibold underline"
+                : ""
+                }`}
             >
               Non Microwave Link
             </Link>
@@ -83,9 +110,9 @@ const ValidasiIsr = () => {
         </div>
       )}
       <div>
-        <InitMonitoringContext.Provider value={ContextMonitoring}>
+        <InitValiadsiContext.Provider value={ContextValidasi}>
           <Outlet />
-        </InitMonitoringContext.Provider>
+        </InitValiadsiContext.Provider>
       </div>
     </div>
   );

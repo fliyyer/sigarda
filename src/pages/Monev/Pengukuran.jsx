@@ -26,15 +26,15 @@ const Pengukuran = () => {
   const dynamicTable = !search
     ? tableData
     : tableData.filter((v) =>
-        v.client.toLowerCase().includes(search.toLowerCase())
-      );
+      v.client.toLowerCase().includes(search.toLowerCase())
+    );
   const [page, setPage] = useState(1);
-  const paginationTable = cvTablePagination(dynamicTable, 1);
+  const paginationTable = cvTablePagination(dynamicTable, 10);
   const [fixTable, setFixTable] = useState([]);
   const navigate = useNavigate()
   const fetchTablePengukuran = async () => {
     try {
-      // const response = await api.get("/pengukuran.php");
+      const response = await api.get("/pengukuran.php");
       setTableData(response.data);
     } catch (error) {
       console.log(error);
@@ -56,7 +56,7 @@ const Pengukuran = () => {
     setPage(1);
     setFixTable(paginationTable[0]);
   }, [search]);
-  useEffect(() => {}, [navigate])
+  useEffect(() => { }, [navigate])
   return (
     <div className="">
       <h1 className="text-[#5E5E5E] text-2xl font-bold">Pengukuran</h1>
