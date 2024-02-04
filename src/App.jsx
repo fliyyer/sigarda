@@ -25,7 +25,7 @@ import PeminjamanList from "./components/layout/Perangkat/PeminjamanList";
 import Unar from "./pages/Pelayanan/Unar";
 import Tamu from "./pages/Pelayanan/Tamu";
 import AddPemimnjam from "./components/ui/pelayanan/AddPemimnjam";
-import AddPerangkat from "./components/ui/pelayanan/addPerangkat";
+
 import ListTamu from "./components/layout/Tamu/ListTamu";
 import AddTamu from "./components/ui/tamu/AddTamu";
 import FrekuensiAddPage from "./components/layout/Monitoring/FrekuensiAddPage";
@@ -40,6 +40,7 @@ import DashboardSpt from "./pages/SPT/DashboardSpt";
 import Spt from "./pages/SPT/Spt";
 import ListSpt from "./components/layout/Spt/ListSpt";
 import { getUserLogin } from "./services/api";
+import AddPerangkat from "./components/ui/pelayanan/addPerangkat";
 
 const router = createBrowserRouter([
   {
@@ -242,7 +243,7 @@ const App = () => {
     setProfile(getUserLogin());
   }, []);
   return (
-    <ProfileContext.Provider value={{profile, setProfile}}>
+    <ProfileContext.Provider value={{ profile, setProfile }}>
       <RouterProvider router={router} />
     </ProfileContext.Provider>
   );
