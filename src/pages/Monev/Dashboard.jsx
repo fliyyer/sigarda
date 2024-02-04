@@ -32,6 +32,7 @@ const Dashboard = () => {
                     to='/validasi'
                 />
             </div>
+            {/* Content */}
             <div className='grid gap-6 md:grid-cols-1 lg:grid-cols-2 2xl:mt-8'>
                 <div className='bg-[#F6F8FF] rounded-md px-4 py-6'>
                     <p className='text-[#5E5E5E] text-center text-2xl md:text-3xl'>

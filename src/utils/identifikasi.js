@@ -25,8 +25,63 @@ export let identifikasi = {
         "service": "Maritime Mobile",
         "subservis": "Vessel Station",
         "kelasemisi": "A3E",
-        "status": "Prelelim. Cancel",
+        "status": "Prelim. Cancel",
       },
     
     ]
   };  
+
+  export let tamu = {
+    data: [
+      {
+        "id": 1,
+        "nama": "Adit",
+        "perusahaan": "Penggalang",
+        "kontak": "CAT",
+        "Keperluan": "Denpasar",
+        "layanan": "Hadir",
+        "status": "Selesai",
+      },
+      {
+        "id": 2,
+        "nama": "Budi",
+        "perusahaan": "Penggalang",
+        "kontak": "CAT",
+        "Keperluan": "Denpasar",
+        "layanan": "Hadir",
+        "status": "Menunggu Antrian",
+      }
+    ]
+  }
+
+  export let unar = {
+    data: [
+      {
+        "id": 1,
+        "nama": "Adit",
+        "kategori": "Penggalang",
+        "ujian": "CAT",
+        "lokasi": "Denpasar",
+        "kehadiran": "Hadir",
+        "status": "Lulus",
+      },
+      {
+        "id": 2,
+        "nama": "Budi",
+        "kategori": "Penggalang",
+        "ujian": "CAT",
+        "lokasi": "Denpasar",
+        "kehadiran": "Tidak Hadir",
+        "status": "Tidak Hadir",
+      },
+      {
+        "id": 1,
+        "nama": "Cindy",
+        "kategori": "Penegak",
+        "ujian": "CAT",
+        "lokasi": "Klungkung",
+        "kehadiran": "Tidak Hadir",
+        "status": "Tidak Lulus",
+      },
+    ]
+  }
