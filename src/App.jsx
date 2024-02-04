@@ -242,7 +242,7 @@ const App = () => {
     setProfile(getUserLogin());
   }, []);
   return (
-    <ProfileContext.Provider value={{profile, setProfile}}>
+    <ProfileContext.Provider value={{ profile, setProfile }}>
       <RouterProvider router={router} />
     </ProfileContext.Provider>
   );
