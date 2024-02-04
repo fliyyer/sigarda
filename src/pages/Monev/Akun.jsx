@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect, useContext } from "react";
 import ProfilCrop from "../../components/ui/ProfileCrop";
-import api, { deleteToken, setUserLogin } from "../../services/api";
+import api, { baseUrl, deleteToken, setUserLogin } from "../../services/api";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { ProfileContext } from "../../App";
@@ -18,7 +18,6 @@ const Akun = () => {
     photo: "",
   });
   console.log(user)
-  // const [userInput, setUserInput] = useState({})
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
@@ -52,29 +51,6 @@ const Akun = () => {
     setProfileImage(croppedImage);
     setIsCropPopupOpen(false);
   };
-
-  // const profile = JSON.parse(sessionStorage.getItem('user_sigarda'));
-  // const fetchProfile = async () => {
-  //     try {
-  //         const response = await api.get(`/register.php?profile_id=${profileUser.id}`);
-  //         if (response.data && response.data) {
-  //             setUser({
-  //                 id: response.data.id,
-  //                 name: response.data.nama,
-  //                 email: response.data.email,
-  //                 photo: response.data.photo,
-  //             });
-  //         } else {
-  //             console.log(response.data);
-  //         }
-  //     } catch (error) {
-  //         console.log('Error fetching profile:', error);
-  //     }
-  // };
-
-  // useEffect(() => {
-  //     fetchProfile();
-  // }, []);
 
   const handleSaveChanges = async () => {
     console.log(134);
@@ -143,7 +119,7 @@ const Akun = () => {
                 <img src={profileImage} alt="" className="w-16 rounded-full" />
               ) : (
                 <img
-                  src={user.photo ? `http://api.sigarda.fliyyer.skom.id/photo_user/${user.photo}` : login}
+                  src={user.photo ? `${baseUrl}/photo_user/${user.photo}` : login}
                   alt=""
                   className="w-16 rounded-full"
                 />
@@ -156,7 +132,7 @@ const Akun = () => {
                 onChange={handleImageChange}
                 style={{ display: "none" }}
                 onClick={(e) => {
-                    e.target.value = null
+                  e.target.value = null
                 }}
               />
             </label>

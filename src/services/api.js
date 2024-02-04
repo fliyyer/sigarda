@@ -30,7 +30,7 @@ export const getToken = () => {
     return tokenSession || tokenRemember
 }
 
-const baseUrl = "http://api.sigarda.fliyyer.skom.id"
+export const baseUrl = "https://fliyyer.skom.id/api.sigarda"
 
 const header = {
     headers: {

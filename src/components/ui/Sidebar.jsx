@@ -13,7 +13,7 @@ import { RiPassValidLine } from "react-icons/ri";
 import { IoFolderOpenOutline } from "react-icons/io5";
 import { FaUser } from "react-icons/fa6";
 import { AiOutlineMenuUnfold, AiOutlineMenuFold } from "react-icons/ai";
-import api from '../../services/api';
+import api, { baseUrl } from '../../services/api';
 
 const Sidebar = () => {
   const [isSimple, setIsSimple] = useState(false);
@@ -139,7 +139,7 @@ const Sidebar = () => {
               </div>
               <div className="flex items-center gap-2">
                 <div className="flex">
-                  <img className="rounded-full w-8 h-8" src={`http://api.sigarda.fliyyer.skom.id/photo_user/${user.photo}` || User} alt="Profile" />
+                  <img className="rounded-full w-8 h-8" src={`${baseUrl}/photo_user/${user.photo}` || User} alt="Profile" />
                 </div>
                 <div className="w-3/4">
                   <p className="text-sm font-semibold">{user.name}</p>
