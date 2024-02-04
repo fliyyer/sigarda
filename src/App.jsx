@@ -25,7 +25,7 @@ import PeminjamanList from "./components/layout/Perangkat/PeminjamanList";
 import Unar from "./pages/Pelayanan/Unar";
 import Tamu from "./pages/Pelayanan/Tamu";
 import AddPemimnjam from "./components/ui/pelayanan/AddPemimnjam";
-import AddPerangkat from "./components/ui/pelayanan/addPerangkat";
+import AddPerangkat from "./components/ui/pelayanan/AddPerangkat";
 import ListTamu from "./components/layout/Tamu/ListTamu";
 import AddTamu from "./components/ui/tamu/AddTamu";
 import FrekuensiAddPage from "./components/layout/Monitoring/FrekuensiAddPage";
