@@ -166,7 +166,7 @@ const Pengukuran = () => {
                   </th>
                 </tr>
               </thead>
-              {(fixTable || []).map((item) => (
+              {(fixTable || []).map((item, index) => (
                 <tbody className="bg-white">
                   <tr>
                     <td className="px-6 text-[#676F82] text-center text-sm py-4 whitespace-nowrap">
@@ -177,7 +177,7 @@ const Pengukuran = () => {
                       />
                     </td>
                     <td className="px-6 text-[#676F82] text-center text-sm py-4 whitespace-nowrap">
-                      {item.id}
+                      {index + 1}
                     </td>
                     <td className="px-6 text-[#000000] text-center text-sm py-4 whitespace-nowrap">
                       {item.frequency}
