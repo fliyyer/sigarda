@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
     LargeDashboard,
     MainLogo,
@@ -13,6 +13,8 @@ import { IoFolderOpenOutline } from "react-icons/io5";
 import { FaRegAddressBook } from "react-icons/fa6";
 import { FaUser } from "react-icons/fa6";
 import { AiOutlineMenuUnfold, AiOutlineMenuFold } from "react-icons/ai";
+import api from '../../../services/api';
+api
 
 const Sidebar = () => {
     const [isSimple, setIsSimple] = useState(false);
@@ -59,6 +61,35 @@ const Sidebar = () => {
         setSearchMenu(value);
     };
 
+    const [user, setUser] = useState({
+        id: '',
+        name: '',
+        email: '',
+        photo: '',
+    });
+    const profile = JSON.parse(sessionStorage.getItem('user_sigarda'));
+    const fetchProfile = async () => {
+        try {
+            const response = await api.get(`/register.php?profile_id=${profile.id}`);
+            if (response.data && response.data) {
+                setUser({
+                    id: response.data.id,
+                    name: response.data.nama,
+                    email: response.data.email,
+                    photo: response.data.photo,
+                });
+            } else {
+                console.log(response.data);
+            }
+        } catch (error) {
+            console.log('Error fetching profile:', error);
+        }
+    };
+
+    useEffect(() => {
+        fetchProfile();
+    }, []);
+
     return (
         <>
             {!isSimple ? (
@@ -103,13 +134,11 @@ const Sidebar = () => {
                             </div>
                             <div className="flex items-center gap-2">
                                 <div className="flex">
-                                    <img className="rounded-full w-8 h-8" src={User} alt="" />
+                                    <img className="rounded-full w-8 h-8" src={`http://api.sigarda.fliyyer.skom.id/photo_user/${user.photo}` || User} alt="Profile" />
                                 </div>
                                 <div className="w-3/4">
-                                    <p className="text-sm font-semibold">Monev</p>
-                                    <p className="text-xs text-slate-600">
-                                        monev@balmon@com
-                                    </p>
+                                    <p className="text-sm font-semibold">{user.name}</p>
+                                    <p className="text-xs text-slate-600">{user.email}</p>
                                 </div>
                             </div>
                         </div>
