@@ -5,16 +5,19 @@ export const setTokenRemember = (val) => {
 }
 
 export const setUserLogin = (val) => {
-    sessionStorage.setItem("user_sigarda", JSON.stringify(val))
+    localStorage.setItem("user_sigarda", JSON.stringify(val))
 }
 
 export const getUserLogin = () => {
-    const user = sessionStorage.getItem("user_sigarda")
+    const user = localStorage.getItem("user_sigarda")
+    console.log(user, 999)
     return JSON.parse(user)
 }
 
 export const deleteToken = () => {
     localStorage.removeItem("remember_sigarda")
+    sessionStorage.removeItem("session_sigarda")
+    localStorage.removeItem("user_sigarda")
 }
 
 export const setTokenSession = (val) => {

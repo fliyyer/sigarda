@@ -73,27 +73,27 @@ const Sidebar = () => {
     photo: '',
   });
   const profile = JSON.parse(sessionStorage.getItem('user_sigarda'));
-  const fetchProfile = async () => {
-    try {
-      const response = await api.get(`/register.php?profile_id=${profile.id}`);
-      if (response.data && response.data) {
-        setUser({
-          id: response.data.id,
-          name: response.data.nama,
-          email: response.data.email,
-          photo: response.data.photo,
-        });
-      } else {
-        console.log(response.data);
-      }
-    } catch (error) {
-      console.log('Error fetching profile:', error);
-    }
-  };
+  // const fetchProfile = async () => {
+  //   try {
+  //     const response = await api.get(`/register.php?profile_id=${profile.id}`);
+  //     if (response.data && response.data) {
+  //       setUser({
+  //         id: response.data.id,
+  //         name: response.data.nama,
+  //         email: response.data.email,
+  //         photo: response.data.photo,
+  //       });
+  //     } else {
+  //       console.log(response.data);
+  //     }
+  //   } catch (error) {
+  //     console.log('Error fetching profile:', error);
+  //   }
+  // };
 
-  useEffect(() => {
-    fetchProfile();
-  }, []);
+  // useEffect(() => {
+  //   fetchProfile();
+  // }, []);
 
   return (
     <>

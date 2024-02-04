@@ -1,5 +1,5 @@
-import React, { createContext } from "react";
-import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import React, { createContext, useEffect, useState } from "react";
+import { RouterProvider, createBrowserRouter, useNavigate } from "react-router-dom";
 import LoginPage from "./pages/LoginPage";
 import ForgotPasswordPage from "./pages/ForgotPasswordPage";
 import DashboardMonev from "./pages/Monev/DashboardMonev";
@@ -237,9 +237,12 @@ const router = createBrowserRouter([
 export const ProfileContext = createContext();
 
 const App = () => {
-  const profile = getUserLogin();
+  const [profile, setProfile] = useState({});
+  useEffect(() => {
+    setProfile(getUserLogin());
+  }, []);
   return (
-    <ProfileContext.Provider value={profile}>
+    <ProfileContext.Provider value={{profile, setProfile}}>
       <RouterProvider router={router} />
     </ProfileContext.Provider>
   );

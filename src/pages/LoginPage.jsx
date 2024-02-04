@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { RiEyeLine, RiEyeOffLine } from "react-icons/ri";
 import LoginIcon from "../assets/icons/login.svg";
@@ -8,8 +8,10 @@ import api, {
   setUserLogin,
 } from "../services/api";
 import Swal from "sweetalert2";
+import { ProfileContext } from "../App";
 
 const LoginPage = () => {
+  const {profile, setProfile} = useContext(ProfileContext)
   const [rememberMe, setRememberMe] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -33,7 +35,11 @@ const LoginPage = () => {
         password,
       });
       const { user } = response;
-      setUserLogin(user);
+      const userProfile = {
+        ...user, name: user.nama
+      }
+      setUserLogin(userProfile);
+      setProfile(userProfile)
       if (rememberMe) {
         setTokenRemember(response.authToken);
       } else {
