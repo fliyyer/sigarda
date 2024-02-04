@@ -4,7 +4,7 @@ import {
     MainLogo,
     SearchIcon,
 } from '../../../assets/icons';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import User from '../../../assets/icons/user.png';
 import { BiSolidUserDetail } from "react-icons/bi";
 import { BsArchive } from "react-icons/bs";
@@ -106,7 +106,7 @@ const Sidebar = () => {
                                     ))}
                                 </div>
                             </div>
-                            <div className="flex items-center gap-2">
+                            <Link to="/akun" className="flex items-center gap-2">
                                 <div className="flex">
                                     <img className="rounded-full w-8 h-8" src={`${baseUrl}/photo_user/${profileUser.photo}` || User} alt="Profile" />
                                 </div>
@@ -114,7 +114,7 @@ const Sidebar = () => {
                                     <p className="text-sm font-semibold">{profileUser.name}</p>
                                     <p className="text-xs text-slate-600">{profileUser.email}</p>
                                 </div>
-                            </div>
+                            </Link>
                         </div>
                     </div>
                 </div>
