@@ -11,7 +11,7 @@ const getStatus = (status) => {
       return "bg-[#F4485D] text-[#F4485D]";
     case "On Air":
       return "bg-[#16AE65] text-[#16AE65]";
-    case "Prelelim. Cancel":
+    case "Prelim. Cancel":
       return "bg-[#457EFF] text-[#457EFF]";
     default:
       return "";
