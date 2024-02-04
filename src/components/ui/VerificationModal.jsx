@@ -10,8 +10,8 @@ export const VerificationModal = ({ show, onContinue, timer }) => {
 
     return (
         show && (
-            <div className="fixed inset-0 z-50 flex items-center justify-center">
-                <div className="absolute inset-0 bg-black opacity-50"></div>
+            <div className="fixed inset-0 z-50 flex items-center backdrop-blur-sm justify-center">
+                <div className="absolute inset-0 bg-black opacity-75"></div>
                 <div className="relative bg-white py-[60px] px-[80px] rounded-[40px]">
                     <h1 className='text-[#153060] text-[40px] leading-[52px]'>Verifikasi</h1>
                     <p className='my-8 text-[#828282]'>Masukkan 4 digit code yang dikirimkan ke e-mail Anda.</p>
