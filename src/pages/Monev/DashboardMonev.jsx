@@ -8,8 +8,8 @@ const DashboardMonev = () => {
     return (
         <div className="flex h-screen overflow-hidden">
             <Sidebar />
-            <div className="flex w-full overflow-hidden">
-                <div className="p-2 md:p-8 flex-grow">
+            <div className="flex w-full ">
+                <div className="p-2 md:p-8 overflow-auto flex-grow">
                     <Outlet />
                 </div>
             </div>

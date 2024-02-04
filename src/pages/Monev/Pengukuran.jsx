@@ -2,10 +2,12 @@ import React, { useEffect, useState } from "react";
 import { CiSearch } from "react-icons/ci";
 import { FaPlus } from "react-icons/fa";
 import { Link, Outlet, useNavigate } from "react-router-dom";
-import { identifikasi } from "../../utils/identifikasi";
 import cvTablePagination from "../../utils/tablePagination";
 import api from "../../services/api";
 import Pagination from "@mui/material/Pagination";
+import { BiEditAlt } from "react-icons/bi";
+import { MdDelete } from "react-icons/md";
+import Swal from "sweetalert2";
 
 const getStatus = (status) => {
   switch (status) {
@@ -13,7 +15,7 @@ const getStatus = (status) => {
       return "bg-[#F4485D] text-[#F4485D]";
     case "On Air":
       return "bg-[#16AE65] text-[#16AE65]";
-    case "Prelelim. Cancel":
+    case "Prelim. Cancel":
       return "bg-[#457EFF] text-[#457EFF]";
     default:
       return "";
@@ -57,6 +59,52 @@ const Pengukuran = () => {
     setFixTable(paginationTable[0]);
   }, [search]);
   useEffect(() => { }, [navigate])
+
+  const [selectedRows, setSelectedRows] = useState([]);
+  const [selectAll, setSelectAll] = useState(false);
+  const handleSelectAll = () => {
+    setSelectAll(!selectAll);
+    setSelectedRows(selectAll ? [] : tableList.map((item) => item.id));
+  };
+
+  const handleSelectRow = (rowId) => {
+    const isSelected = selectedRows.includes(rowId);
+    if (isSelected) {
+      setSelectedRows((prevSelectedRows) =>
+        prevSelectedRows.filter((id) => id !== rowId)
+      );
+    } else {
+      setSelectedRows((prevSelectedRows) => [...prevSelectedRows, rowId]);
+    }
+  };
+
+  const handleDelete = async (id) => {
+    try {
+      if (!id) {
+        console.log("Missing identification ID.");
+        return;
+      }
+      await api.delete(`/pengukuran.php?id=${id}`);
+      Swal.fire({
+        icon: 'success',
+        title: 'Item Deleted',
+        text: 'The item has been successfully deleted.',
+        focusConfirm: false,
+      });
+      setTimeout(() => {
+        window.location.reload();
+      }, 1500)
+
+    } catch (error) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'An error occurred while deleting the item.',
+      });
+    }
+  };
+
+
   return (
     <div className="">
       <h1 className="text-[#5E5E5E] text-2xl font-bold">Pengukuran</h1>
@@ -90,6 +138,9 @@ const Pengukuran = () => {
               <thead className="">
                 <tr className="">
                   <th className="px-6 py-3 text-center text-sm font-semibold text-[#334158] uppercase tracking-wider">
+                    <input type="checkbox" checked={selectAll} onChange={handleSelectAll} />
+                  </th>
+                  <th className="px-6 py-3 text-center text-sm font-semibold text-[#334158] uppercase tracking-wider">
                     #
                   </th>
                   <th className="px-6 py-3 text-center text-sm font-semibold text-[#334158] uppercase tracking-wider">
@@ -110,11 +161,21 @@ const Pengukuran = () => {
                   <th className="px-6 py-3 text-center text-sm font-semibold text-[#334158] uppercase tracking-wider">
                     Status
                   </th>
+                  <th className="px-6 py-3 text-center text-sm font-semibold text-[#334158] uppercase tracking-wider">
+                    Action
+                  </th>
                 </tr>
               </thead>
               {(fixTable || []).map((item) => (
                 <tbody className="bg-white">
                   <tr>
+                    <td className="px-6 text-[#676F82] text-center text-sm py-4 whitespace-nowrap">
+                      <input
+                        type="checkbox"
+                        checked={selectAll || selectedRows.includes(item.id)}
+                        onChange={() => handleSelectRow(item.id)}
+                      />
+                    </td>
                     <td className="px-6 text-[#676F82] text-center text-sm py-4 whitespace-nowrap">
                       {item.id}
                     </td>
@@ -148,6 +209,14 @@ const Pengukuran = () => {
                           <p>{item.status}</p>
                         </div>
                       )}
+                    </td>
+                    <td className="px-6 flex justify-center gap-4 items-center text-center text-sm py-4 whitespace-nowrap">
+                      <button onClick={() => handleEdit(item.id)} className="bg-main-color bg-opacity-10 p-3 rounded-full">
+                        <BiEditAlt className="text-main-color text-lg" />
+                      </button>
+                      <button onClick={() => handleDelete(item.id)} className="p-3 rounded-full bg-[#FF0000] bg-opacity-10">
+                        <MdDelete className="text-lg text-[#ff0000]" />
+                      </button>
                     </td>
                   </tr>
                 </tbody>
