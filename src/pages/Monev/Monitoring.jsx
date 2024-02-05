@@ -26,16 +26,6 @@ const Monitoring = () => {
   const handleChangeTable = (e, currLocation) => {
     const { value } = e.target;
     setSearchTable(value);
-    // if (currLocation === "/monitoring/identifikasi") {
-    //   const filteredIdentifikasi = identifikasi.data.filter(
-    //     (v) =>
-    //       v.client.toLowerCase().includes(value.toLowerCase()) ||
-    //       v.service.toLowerCase().includes(value.toLowerCase()) ||
-    //       v.subservis.toLowerCase().includes(value.toLowerCase()) ||
-    //       v.kelasemisi.toLowerCase().includes(value.toLowerCase())
-    //   );
-    //   setTableIdentifikasi(filteredIdentifikasi);
-    // }
   };
 
   const ContextMonitoring = {
@@ -44,7 +34,7 @@ const Monitoring = () => {
         value: !searchTable
           ? tableIdentifikasi
           : tableIdentifikasi.filter((v) =>
-            v.client.toLowerCase().includes(searchTable.toLowerCase())
+            v.client.toLowerCase().includes(searchTable.toLowerCase()) ||  v.service.toLowerCase().includes(searchTable.toLowerCase())
           ),
         setValue: setTableIdentifikasi,
       },
@@ -54,7 +44,7 @@ const Monitoring = () => {
         value: !searchTable
           ? tableJatim
           : tableJatim.filter((v) =>
-            v.client.toLowerCase().includes(searchTable.toLowerCase())
+          v.client.toLowerCase().includes(searchTable.toLowerCase()) ||  v.service.toLowerCase().includes(searchTable.toLowerCase())
           ),
         setValue: setTableJatim,
       },
@@ -64,7 +54,7 @@ const Monitoring = () => {
         value: !searchTable
           ? tableMataram
           : tableMataram.filter((v) =>
-            v.client.toLowerCase().includes(searchTable.toLowerCase())
+          v.client.toLowerCase().includes(searchTable.toLowerCase()) ||  v.service.toLowerCase().includes(searchTable.toLowerCase())
           ),
         setValue: setTableMataram,
       },
@@ -75,7 +65,6 @@ const Monitoring = () => {
     try {
       const response = await api.get("/identifikasi.php");
       setTableIdentifikasi(response.data);
-      console.log(response);
     } catch (error) {
       console.log(error);
     }
@@ -85,7 +74,6 @@ const Monitoring = () => {
     try {
       const response = await api.get("/sims_jatim.php");
       setTableJatim(response.data);
-      console.log(response);
     } catch (error) {
       console.log(error);
     }
@@ -95,7 +83,6 @@ const Monitoring = () => {
     try {
       const response = await api.get("/sims_mataram.php");
       setTableMataram(response.data);
-      console.log(response);
     } catch (error) {
       console.log(error);
     }

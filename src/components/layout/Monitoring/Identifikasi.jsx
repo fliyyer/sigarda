@@ -164,7 +164,7 @@ const Identifikasi = () => {
                 <td className="px-6 text-[#000000] text-center text-sm py-4 whitespace-nowrap">
                   {item.status && (
                     <div
-                      className={`flex items-center justify-center gap-1 rounded-full py-2 bg-opacity-25 text-xs font-medium ${getStatus(
+                      className={`flex items-center px-3 justify-center gap-1 rounded-full py-2 bg-opacity-25 text-xs font-medium ${getStatus(
                         item.status
                       )}`}
                     >
