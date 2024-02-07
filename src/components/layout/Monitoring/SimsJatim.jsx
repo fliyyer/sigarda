@@ -165,9 +165,9 @@ const SimsJatim = () => {
                   )}
                 </td>
                 <td className="px-6 flex justify-center gap-4 items-center text-center text-sm py-4 whitespace-nowrap">
-                  <button onClick={() => handleEdit(item.id)} className="bg-main-color bg-opacity-10 p-3 rounded-full">
+                  {/* <button onClick={() => handleEdit(item.id)} className="bg-main-color bg-opacity-10 p-3 rounded-full">
                     <BiEditAlt className="text-main-color text-lg" />
-                  </button>
+                  </button> */}
                   <button onClick={() => handleDelete(item.id)} className="p-3 rounded-full bg-[#FF0000] bg-opacity-10">
                     <MdDelete className="text-lg text-[#ff0000]" />
                   </button>
