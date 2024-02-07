@@ -40,6 +40,8 @@ import DashboardSpt from "./pages/SPT/DashboardSpt";
 import Spt from "./pages/SPT/Spt";
 import ListSpt from "./components/layout/Spt/ListSpt";
 import { getUserLogin } from "./services/api";
+import TabelDocument from "./components/layout/Dokumen/TableDokumen";
+import TableTemplate from "./components/layout/Dokumen/TableTemplate";
 
 const router = createBrowserRouter([
   {
@@ -137,6 +139,16 @@ const router = createBrowserRouter([
       {
         path: "dokumen",
         element: <Dokumen />,
+        children: [
+          {
+            index: true,
+            element: <TabelDocument />,
+          },
+          {
+            path: "template",
+            element: <TableTemplate />,
+          }
+        ]
       },
       {
         path: "akun",

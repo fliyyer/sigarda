@@ -1,7 +1,7 @@
 import React from 'react'
 import { CiSearch } from 'react-icons/ci'
 import { Link, useLocation } from 'react-router-dom'
-import TableDokumen from '../../components/layout/Dokumen/TableDokumen';
+import { Outlet } from 'react-router-dom'
 
 const Dokumen = () => {
     const location = useLocation();
@@ -46,9 +46,8 @@ const Dokumen = () => {
             </div>
           </div>
         </div>
-        {/* content kali */}
         <div>
-            <TableDokumen/>
+            <Outlet />
         </div>
     </div>
   )

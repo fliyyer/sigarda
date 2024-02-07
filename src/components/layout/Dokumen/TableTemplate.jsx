@@ -6,30 +6,30 @@ import { SlOptionsVertical } from 'react-icons/sl';
 import AddRepository from './AddRepository';
 import AddFileDokumen from './AddFileDokumen';
 
-const TabelDocument = () => {
+const TableTemplate = () => {
   const data = [
     {
       no: 1,
-      folder: 'SOP',
-      nama: 'SOP Pengukuran Radio Siaran.pdf',
+      folder: 'Template',
+      nama: 'Template Pengukuran Radio Siaran.pdf',
       tanggal: '2022-11-03',
     },
     {
       no: 2,
-      folder: 'SOP',
-      nama: 'SOP Pemeriksaan Microwave Link.pdf',
+      folder: 'Template',
+      nama: 'Template Pemeriksaan Microwave Link.pdf',
       tanggal: '2022-11-07',
     },
     {
       no: 3,
-      folder: 'SOP',
-      nama: 'SOP Pengukuran Radio Siaran.pdf',
+      folder: 'Template',
+      nama: 'Template Pengukuran Radio Siaran.pdf',
       tanggal: '2022-11-03',
     },
     {
       no: 4,
-      folder: 'SOP',
-      nama: 'SOP Pemeriksaan Microwave Link.pdf',
+      folder: 'Template',
+      nama: 'Template Pemeriksaan Microwave Link.pdf',
       tanggal: '2022-11-07',
     },
   ];
@@ -108,4 +108,4 @@ const TabelDocument = () => {
   );
 };
 
-export default TabelDocument;
+export default TableTemplate;
