@@ -16,21 +16,21 @@ const DashboardPel = () => {
                     persentase="100%"
                     value="5 dari 5"
                     kota="SMFR dimanfaatkan "
-                    to='/'
+                    to='/pelayanan/perangkat'
                 />
                 <CardCapaian
                     title="Capaian UNAR"
                     persentase="89%"
                     value="8 dari 9"
                     kota="Kabupaten/Kota di Provinsi Bali telah dilaksanakan UNAR"
-                    to='/'
+                    to='/pelayanan/unar'
                 />
                 <CardCapaian
                     title="Kunjungan Tamu"
                     persentase="12"
                     value="12"
                     kota="Tamu telah berkunjung"
-                    to='/'
+                    to='/pelayanan/tamu'
                 />
             </div>
             <div className='grid gap-6 md:grid-cols-1 lg:grid-cols-2 2xl:mt-8'>

@@ -1,7 +1,7 @@
 import React from 'react';
 
 const AddTamu = () => {
-  const perangkats = [
+  const layanan = [
     'Konsultasi Perizinan',
     'Aduan Gangguan',
     'Informasi',
@@ -46,15 +46,26 @@ const AddTamu = () => {
         </div>
         <div>
           <label className="block text-base text-[#457EFF] font-medium">
-            Jenis Perangkat
+            Keperluan  
+          </label>
+          <input
+            type="text"
+            name="keperluan"
+            placeholder="Input Keperluan"
+            className="mt-1 p-2 w-full border placeholder:text-[#666666] shadow-sm placeholder:text-sm rounded-lg"
+          />
+        </div>
+        <div>
+          <label className="block text-base text-[#457EFF] font-medium">
+            Jenis Layanan
           </label>
           <select
             name="perangkat"
             className="mt-1 p-2 py-3 w-full border text-[#666666] rounded-lg">
             <option className="" value="">
-              Piih Jenis Perangkat
+              Piih Layanan
             </option>
-            {perangkats.map((perangkat) => (
+            {layanan.map((perangkat) => (
               <option key={perangkat} value={perangkat}>
                 {perangkat}
               </option>
