@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { FaPlus } from 'react-icons/fa6'
 import { Link } from 'react-router-dom'
+import { InitPerangkatContext } from '../../../pages/Pelayanan/Perangkat'
 const data = [
     {
         id: 1,
@@ -19,10 +20,17 @@ const data = [
 
 ]
 const PerangkatList = () => {
+  const PerangkatContext = useContext(InitPerangkatContext);
+  const { value } = PerangkatContext.perangkatPage.table;
+  const [tableList, setTable] = useState([]);
+
+  useEffect(() => {
+    setTable(value);
+  })
   return (
     <div>
        <div>
-        <Link to='add' className="flex gap-2 hover:underline mt-[15px] text-sm pl-6 items-center">
+        <Link to='add' className="flex w-52 gap-2 hover:underline mt-[15px] text-sm pl-6 items-center">
           <span className="bg-main-color w-[32px] text-[18px] h-[32px] flex justify-center items-center rounded-full text-white">
             <FaPlus />
           </span>
@@ -40,21 +48,19 @@ const PerangkatList = () => {
                 <th className='px-6 py-3 text-center text-sm font-semibold text-[#334158] tracking-wider'>Status</th>
               </tr>
             </thead>
-                {
-                    data.map((item) => (
-                        <tbody className='bg-white'>
-                <tr>
-                    <td className='px-6 text-[#676F82] text-center text-sm py-4 whitespace-nowrap'>{item.id}</td>
-                    <td className='px-6 text-[#000000] text-center text-sm py-4 whitespace-nowrap'>{item.perangkat}</td>
-                    <td className='px-6 text-[#000000] text-center text-sm py-4 whitespace-nowrap'>{item.merk}</td>
-                    <td className='px-6 text-[#000000] flex items-center text-sm py-4'>
-                      <img src={item.gambar} className='max-w-[135px] mx-auto max-h-[75px]' alt="" />
-                    </td>
-                    <td className='px-6 text-[#000] text-center text-sm py-4 whitespace-nowrap'>{item.status}</td>
-                </tr>
-                </tbody>
-                    ))
-                }
+                {(tableList || []).map((item, index) => (
+                  <tbody className='bg-white'>
+                  <tr key={item.id}>
+                      <td className='px-6 text-[#676F82] text-center text-sm py-4 whitespace-nowrap'>{index + 1}</td>
+                      <td className='px-6 text-[#000000] text-center text-sm py-4 whitespace-nowrap'>{item.jenis_perangkat}</td>
+                      <td className='px-6 text-[#000000] text-center text-sm py-4 whitespace-nowrap'>{item.merk}</td>
+                      <td className='px-6 text-[#000000] flex items-center text-sm py-4'>
+                        <img src={item.image} className='max-w-[135px] mx-auto max-h-[75px]' alt="" />
+                      </td>
+                      <td className='px-6 text-[#000] text-center text-sm py-4 whitespace-nowrap'>{item.status}</td>
+                  </tr>
+                  </tbody>
+                ))}
         </table>
       </div>
     </div>

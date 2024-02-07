@@ -1,12 +1,13 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useEffect, useState } from 'react';
 import { CiSearch } from 'react-icons/ci';
 import { Link, useLocation } from 'react-router-dom';
 import { Outlet } from 'react-router-dom';
-import { identifikasi } from '../../utils/identifikasi';
+import api from '../../services/api';
 
-export const InitMonitoringContext = createContext();
+export const InitPerangkatContext = createContext();
 
 const Perangkat = () => {
+  const [tablePerangkat, setTablePerangkat] = useState([]);
   const location = useLocation();
   const isLinkActive = (to) => {
     return location.pathname === to;
@@ -14,32 +15,33 @@ const Perangkat = () => {
 
   const isAddRoute = location.pathname === '/pelayanan/perangkat/add';
 
-  const [tableIdentifikasi, setTableIdentifikasi] = useState(identifikasi.data);
   const [searchTable, setSearchTable] = useState('');
 
-  const handleChangeTable = (e, currLocation) => {
-    const { value } = e.target;
-    setSearchTable(value);
-    if (currLocation === '/monitoring/identifikasi') {
-      const filteredIdentifikasi = identifikasi.data.filter(
-        (v) =>
-          v.client.toLowerCase().includes(value.toLowerCase()) ||
-          v.service.toLowerCase().includes(value.toLowerCase()) ||
-          v.subservis.toLowerCase().includes(value.toLowerCase()) ||
-          v.kelasemisi.toLowerCase().includes(value.toLowerCase())
-      );
-      setTableIdentifikasi(filteredIdentifikasi);
+  const fetchTablePerangkat = async () => {
+    try {
+      const response = await api.get("/pelayanan_perangkat.php");
+      setTablePerangkat(response.data);
+    } catch (error) {
+      console.log(error);
     }
-  };
+  }
 
-  const ContextMonitoring = {
-    identifikasiPage: {
+  const ContextPerangkat = {
+    perangkatPage : {
       table: {
-        value: tableIdentifikasi,
-        setValue: setTableIdentifikasi,
-      },
-    },
-  };
+        value: !searchTable
+          ? tablePerangkat
+          : tablePerangkat.filter((v) =>
+              v.client.toLowerCase().includes(searchTable.toLowerCase()) ||  v.service.toLowerCase().includes(searchTable.toLowerCase())
+            ),
+        setValue: setTablePerangkat,
+      }
+    }
+  }
+
+  useEffect(() => {
+    fetchTablePerangkat()
+  })
 
   return (
     <div>
@@ -82,9 +84,9 @@ const Perangkat = () => {
         </div>
    
       <div>
-        <InitMonitoringContext.Provider value={ContextMonitoring}>
+        <InitPerangkatContext.Provider value={ContextPerangkat}>
           <Outlet />
-        </InitMonitoringContext.Provider>
+        </InitPerangkatContext.Provider>
       </div>
     </div>
   );

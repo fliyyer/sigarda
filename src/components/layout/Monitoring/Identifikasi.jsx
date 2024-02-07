@@ -8,7 +8,6 @@ import { BiEditAlt } from "react-icons/bi";
 import { MdDelete } from "react-icons/md";
 import api from "../../../services/api";
 import Swal from 'sweetalert2';
-
 const getStatus = (status) => {
   switch (status) {
     case "Off Air":
