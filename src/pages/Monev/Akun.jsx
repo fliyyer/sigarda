@@ -17,7 +17,6 @@ const Akun = () => {
     email: "",
     photo: "",
   });
-  console.log(user)
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
@@ -95,7 +94,6 @@ const Akun = () => {
   useEffect(() => {
     setUser(profileUser);
   }, [profileUser]);
-  console.log(user);
 
   return (
     <div className="">
@@ -156,22 +154,9 @@ const Akun = () => {
           className="w-full p-2 border border-[#E5E5E5] py-3 rounded-md mt-2"
         />
         <p className="mt-[34px] text-sm font-semibold">Email</p>
-        <input
-          type="text"
-          value={user.email}
-          onChange={(e) => setUser({ ...user, email: e.target.value })}
-          className="w-full p-2 border border-[#E5E5E5] py-3 rounded-md mt-2"
-        />
+        <p className="w-full p-2 border border-[#E5E5E5] bg-slate-100 py-3 rounded-md mt-2">{user.email}</p>
         <p className="mt-[34px] text-sm font-semibold">Role</p>
-        <select
-          value={user.role}
-          onChange={(e) => setUser({ ...user, role: e.target.value })}
-          className="w-full p-2 border border-[#E5E5E5] py-3 rounded-md mt-2"
-        >
-          <option value="Monev">Monev</option>
-          <option value="TU">TU</option>
-          <option value="Pelayanan">Pelayanan</option>
-        </select>
+        <p className="w-full p-2 border border-[#E5E5E5] py-3 bg-slate-100 capitalize rounded-md mt-2">{user.role}</p>
         <div className="flex mt-9 justify-end">
           <button
             onClick={handleSaveChanges}
