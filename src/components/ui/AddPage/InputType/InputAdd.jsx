@@ -30,6 +30,36 @@ const InputAdd = ({
           />
         </div>
       )}
+      {type === "number" && (
+        <div className="mb-4">
+          <label className="block text-base text-[#457EFF] font-medium">
+            {label}
+          </label>
+          <input
+            name={name}
+            type="number"
+            value={inputVal}
+            placeholder={placeholder}
+            onChange={setInputVal}
+            className="mt-1 p-2 w-full border placeholder:text-[#666666] shadow-sm placeholder:text-sm rounded-lg"
+          />
+        </div>
+      )}
+      {type === "date" && (
+        <div className="mb-4">
+          <label className="block text-base text-[#457EFF] font-medium">
+            {label}
+          </label>
+          <input
+            name={name}
+            type="date"
+            value={inputVal}
+            placeholder={placeholder}
+            onChange={setInputVal}
+            className="mt-1 p-2 w-full border placeholder:text-[#666666] shadow-sm placeholder:text-sm rounded-lg"
+          />
+        </div>
+      )}
       {type === "select" && (
         <div className="mb-4">
           <label className="block text-base text-[#457EFF] font-medium">

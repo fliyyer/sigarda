@@ -1,5 +1,9 @@
 import React, { createContext, useEffect, useState } from "react";
-import { RouterProvider, createBrowserRouter, useNavigate } from "react-router-dom";
+import {
+  RouterProvider,
+  createBrowserRouter,
+  useNavigate,
+} from "react-router-dom";
 import LoginPage from "./pages/LoginPage";
 import ForgotPasswordPage from "./pages/ForgotPasswordPage";
 import DashboardMonev from "./pages/Monev/DashboardMonev";
@@ -42,6 +46,10 @@ import ListSpt from "./components/layout/Spt/ListSpt";
 import { getUserLogin } from "./services/api";
 import TabelDocument from "./components/layout/Dokumen/TableDokumen";
 import TableTemplate from "./components/layout/Dokumen/TableTemplate";
+import AddSpt from "./components/layout/Spt/AddSpt";
+import Kepegawaian from "./pages/SPT/Kepegawaian";
+import AddPegawai from "./components/layout/kepegawaian/AddKepegawaian";
+import Arsip from "./components/layout/Arsip/Arsip";
 
 const router = createBrowserRouter([
   {
@@ -147,8 +155,8 @@ const router = createBrowserRouter([
           {
             path: "template",
             element: <TableTemplate />,
-          }
-        ]
+          },
+        ],
       },
       {
         path: "akun",
@@ -233,12 +241,32 @@ const router = createBrowserRouter([
         element: <Spt />,
       },
       {
-        path: "list-spt",
-        element: <Spt />,
+        path: "add-spt",
+        element: <AddSpt />,
+      },
+      {
+        path: "kepegawaian",
+        element: <Kepegawaian />,
+      },
+      {
+        path: "add-pegawai",
+        element: <AddPegawai />,
+      },
+      {
+        path: "arsip",
+        element: <Arsip />,
+      },
+      {
+        path: "dokumen",
+        element: <Dokumen />,
         children: [
           {
             index: true,
-            element: <ListSpt />,
+            element: <TabelDocument />,
+          },
+          {
+            path: "template",
+            element: <TableTemplate />,
           },
         ],
       },

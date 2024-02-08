@@ -3,6 +3,7 @@ import { CiSearch } from 'react-icons/ci'
 import { FaPlus } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
 import { Outlet } from 'react-router-dom'
+import ListSpt from '../../components/layout/Spt/ListSpt'
 
 
 const Spt = () => {
@@ -10,7 +11,7 @@ const Spt = () => {
         <div>
             <h1 className="text-[#5E5E5E] text-2xl font-bold">SPT</h1>
             <div className='flex justify-between mt-7 items-center'>
-                <Link to='add' className="flex gap-2 hover:underline mt-[15px] text-sm pl-6 items-center">
+                <Link to='add-spt' className="flex gap-2 hover:underline mt-[15px] text-sm pl-6 items-center">
                     <span className="bg-main-color w-[32px] text-[18px] h-[32px] flex justify-center items-center rounded-full text-white">
                         <FaPlus />
                     </span>
@@ -29,7 +30,7 @@ const Spt = () => {
                 </div>
             </div>
             <div>
-                <Outlet />
+                <ListSpt />
             </div>
         </div>
     )
