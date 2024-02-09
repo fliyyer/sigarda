@@ -8,12 +8,13 @@ export const InitPerangkatContext = createContext();
 
 const Perangkat = () => {
   const [tablePerangkat, setTablePerangkat] = useState([]);
+  const [tablePeminjaman, setTablePeminjaman] = useState([]);
   const location = useLocation();
   const isLinkActive = (to) => {
     return location.pathname === to;
   };
 
-  const isAddRoute = location.pathname === '/pelayanan/perangkat/add';
+  const isAddRoute = location.pathname === '/pelayanan/perangkat/add' || location.pathname === '/pelayanan/perangkat/peminjaman/add-peminjaman';
 
   const [searchTable, setSearchTable] = useState('');
 
@@ -26,48 +27,66 @@ const Perangkat = () => {
     }
   }
 
+  const fetchTablePeminjaman = async () => {
+    try {
+      const response = await api.get("/pelayanan_peminjaman.php");
+      setTablePeminjaman(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   const ContextPerangkat = {
-    perangkatPage : {
+    perangkatPage: {
       table: {
         value: !searchTable
           ? tablePerangkat
           : tablePerangkat.filter((v) =>
-              v.client.toLowerCase().includes(searchTable.toLowerCase()) ||  v.service.toLowerCase().includes(searchTable.toLowerCase())
-            ),
+            v.client.toLowerCase().includes(searchTable.toLowerCase()) || v.service.toLowerCase().includes(searchTable.toLowerCase())
+          ),
         setValue: setTablePerangkat,
+      }
+    },
+    peminjamanPage: {
+      table: {
+        value: !searchTable
+          ? tablePeminjaman
+          : tablePeminjaman.filter((v) =>
+            v.client.toLowerCase().includes(searchTable.toLowerCase()) || v.service.toLowerCase().includes(searchTable.toLowerCase())
+          ),
+        setValue: setTablePeminjaman,
       }
     }
   }
 
   useEffect(() => {
-    fetchTablePerangkat()
-  })
+    fetchTablePerangkat();
+    fetchTablePeminjaman();
+  }, []);
 
   return (
     <div>
       <h1 className="text-[#5E5E5E] text-2xl font-bold">Perangkat</h1>
-        <div className="flex mt-[23px] justify-between">
-          <div className="flex list-none bg-[#F6F8FF] rounded-[40px] py-4 px-[30px] text-[16px] 2xl:text-lg text-[#676F82] font-normal space-x-3">
-            <Link
-              to="/pelayanan/perangkat"
-              className={`cursor-pointer ${
-                isLinkActive('/pelayanan/perangkat' )
-                  ? 'text-[#334158] font-semibold underline'
-                  : ''
+      <div className="flex mt-[23px] justify-between">
+        <div className="flex list-none bg-[#F6F8FF] rounded-[40px] py-4 px-[30px] text-[16px] 2xl:text-lg text-[#676F82] font-normal space-x-3">
+          <Link
+            to="/pelayanan/perangkat"
+            className={`cursor-pointer ${isLinkActive('/pelayanan/perangkat')
+              ? 'text-[#334158] font-semibold underline'
+              : ''
               }`}>
-              Perangkat
-            </Link>
-            <Link
-              to="peminjaman"
-              className={`cursor-pointer ${
-                isLinkActive('/pelayanan/perangkat/peminjaman')
-                  ? 'text-[#334158] font-semibold underline'
-                  : ''
+            Perangkat
+          </Link>
+          <Link
+            to="peminjaman"
+            className={`cursor-pointer ${isLinkActive('/pelayanan/perangkat/peminjaman')
+              ? 'text-[#334158] font-semibold underline'
+              : ''
               }`}>
-              Peminjaman
-            </Link>
-          </div>
-          {!isAddRoute && (
+            Peminjaman
+          </Link>
+        </div>
+        {!isAddRoute && (
           <div className="relative">
             <input
               type="search"
@@ -80,9 +99,9 @@ const Perangkat = () => {
               <CiSearch className="w-5 h-5 text-[#AEB8CF]" />
             </div>
           </div>
-             )}
-        </div>
-   
+        )}
+      </div>
+
       <div>
         <InitPerangkatContext.Provider value={ContextPerangkat}>
           <Outlet />

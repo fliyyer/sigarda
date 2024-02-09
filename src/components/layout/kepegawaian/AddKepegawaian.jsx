@@ -64,7 +64,6 @@ const AddPegawai = () => {
             options: ["Monev", "TU", "Pelayanan"],
           },
         ]}
-        dragInput={{}}
       />
     </div>
   );

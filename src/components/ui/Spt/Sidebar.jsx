@@ -1,18 +1,18 @@
-import React, { useContext, useEffect, useMemo, useState } from "react";
+import React, { useContext, useState } from "react";
 import { LargeDashboard, MainLogo, SearchIcon } from "../../../assets/icons";
-import { Link, NavLink, useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import User from "../../../assets/icons/user.png";
 import { BiSolidUserDetail } from "react-icons/bi";
 import { BsArchive } from "react-icons/bs";
 import { IoDocumentOutline } from "react-icons/io5";
 import { IoFolderOpenOutline } from "react-icons/io5";
-import { FaRegAddressBook } from "react-icons/fa6";
 import { FaUser } from "react-icons/fa6";
 import { AiOutlineMenuUnfold, AiOutlineMenuFold } from "react-icons/ai";
-import api, { baseUrl } from "../../../services/api";
+import { baseUrl } from "../../../services/api";
 import { ProfileContext } from "../../../App";
 
 const Sidebar = () => {
+  const [isActive, setIsActive] = useState(false);
   const [isSimple, setIsSimple] = useState(false);
   const { pathname } = useLocation();
   const navList = [
@@ -92,11 +92,10 @@ const Sidebar = () => {
                     <Link
                       key={val.navTitle}
                       to={val.navTo}
-                      className={`${
-                        (val.navigates || []).includes(pathname)
-                          ? "bg-slate-200 text-main-color font-semibold"
-                          : "bg-transparent"
-                      } flex text-sm gap-x-3 items-center text-[#676F82] hover:bg-[#E3EAFF] my-1 hover:text-[#457EFF] hover:font-semibold px-4 py-2 rounded-md`}
+                      className={`${(val.navigates || []).includes(pathname)
+                        ? "bg-slate-200 text-main-color font-semibold"
+                        : "bg-transparent"
+                        } flex text-sm gap-x-3 items-center text-[#676F82] hover:bg-[#E3EAFF] my-1 hover:text-[#457EFF] hover:font-semibold px-4 py-2 rounded-md`}
                     >
                       <div className="">{val.icon}</div>
                       <div>{val.navTitle}</div>
@@ -127,11 +126,10 @@ const Sidebar = () => {
               <Link
                 key={val.navTitle}
                 to={val.navTo}
-                className={`${
-                  isActive
-                    ? "bg-slate-300 text-main-color font-semibold"
-                    : "bg-transparent"
-                } flex text-xl text-main-color gap-x-3 hover:bg-slate-100 items-center p-4 rounded-md`}
+                className={`${isActive
+                  ? "bg-slate-300 text-main-color font-semibold"
+                  : "bg-transparent"
+                  } flex text-xl text-main-color gap-x-3 hover:bg-slate-100 items-center p-4 rounded-md`}
               >
                 <div className="">{val.icon}</div>
               </Link>

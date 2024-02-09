@@ -1,9 +1,15 @@
 import React from 'react'
 import { CiSearch } from 'react-icons/ci'
 import { FaPlus } from 'react-icons/fa'
-import { Link, Outlet } from 'react-router-dom'
+import { Link, Outlet, useLocation } from 'react-router-dom'
 
 const Unar = () => {
+  const location = useLocation();
+  const isLinkActive = (to) => {
+    return location.pathname === to;
+  };
+
+  const isAddRoute = location.pathname === '/pelayanan/unar/add';
   return (
     <div>
       <h1 className="text-[#5E5E5E] text-2xl uppercase font-bold">Unar</h1>
@@ -14,17 +20,19 @@ const Unar = () => {
           </span>
           Tambah Data
         </Link>
-        <div className="relative">
-          <input
-            type="search"
-            placeholder="Search"
-            className="pl-10 pr-4 py-3 outline-none rounded-[40px] bg-[#F6F8FF]"
-            onChange={(e) => handleChangeTable(e, location.pathname)}
-          />
-          <div className="absolute bottom-2 inset-y-0 left-0 flex items-center pl-3">
-            <CiSearch className="w-5 mt-2 h-5 text-[#AEB8CF]" />
+        {!isAddRoute && (
+          <div className="relative">
+            <input
+              type="search"
+              placeholder="Search"
+              className="pl-10 pr-4 py-3 outline-none rounded-[40px] bg-[#F6F8FF]"
+              onChange={(e) => handleChangeTable(e, location.pathname)}
+            />
+            <div className="absolute bottom-2 inset-y-0 left-0 flex items-center pl-3">
+              <CiSearch className="w-5 mt-2 h-5 text-[#AEB8CF]" />
+            </div>
           </div>
-        </div>
+        )}
       </div>
       <div>
         <Outlet />

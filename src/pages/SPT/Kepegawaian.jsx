@@ -3,21 +3,22 @@ import { CiSearch } from "react-icons/ci";
 import { FaPlus } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { identifikasi } from "../../utils/identifikasi";
+import { pegawai } from "../../utils/pegawai";
 
 const Kepegawaian = () => {
   const getStatus = (status) => {
     switch (status) {
-      case "Off Air":
+      case "Tidak Aktif":
         return "bg-[#F4485D] text-[#F4485D]";
-      case "On Air":
+      case "Aktif":
         return "bg-[#16AE65] text-[#16AE65]";
-      case "Prelelim. Cancel":
+      case "Prelim. Cancel":
         return "bg-[#457EFF] text-[#457EFF]";
       default:
         return "";
     }
   };
-  const data = identifikasi.data
+  const data = pegawai.data
   return (
     <div>
       <h1 className="text-[#5E5E5E] text-2xl font-bold">Kepegawaian</h1>
@@ -52,19 +53,19 @@ const Kepegawaian = () => {
                   #
                 </th>
                 <th className="px-6 py-3 text-center text-sm font-semibold text-[#334158] tracking-wider">
-                  Nama
+                  Nama Pegawai
                 </th>
                 <th className="px-6 py-3 text-center text-sm font-semibold text-[#334158] tracking-wider">
-                  Perusahaan atau Instansi
+                  NIP
                 </th>
                 <th className="px-6 py-3 text-center text-sm font-semibold text-[#334158] tracking-wider">
-                  Kontak
+                  Golongan
                 </th>
                 <th className="px-6 py-3 text-center text-sm font-semibold text-[#334158] tracking-wider">
-                  Keperluan
+                  Jabatan
                 </th>
                 <th className="px-6 py-3 text-center text-sm font-semibold text-[#334158] tracking-wider">
-                  Jenis Layanan
+                  Tim Kerja
                 </th>
                 <th className="px-6 py-3 text-center text-sm font-semibold text-[#334158] tracking-wider">
                   Status
@@ -78,19 +79,19 @@ const Kepegawaian = () => {
                     {item.id}
                   </td>
                   <td className="px-6 text-[#000000] text-center text-sm py-4 whitespace-nowrap">
-                    {item.frekuensi}
+                    {item.nama}
                   </td>
                   <td className="px-6 text-[#000000] text-center text-sm py-4 whitespace-nowrap">
-                    {item.client}
+                    {item.nip}
                   </td>
                   <td className="px-6 text-[#000000] text-center text-sm py-4 whitespace-nowrap">
-                    {item.service}
+                    {item.golongan}
                   </td>
                   <td className="px-6 text-[#000000] text-center text-sm py-4 whitespace-nowrap">
-                    {item.subservis}
+                    {item.jabatan}
                   </td>
                   <td className="px-6 text-[#000000] text-center text-sm py-4 whitespace-nowrap">
-                    {item.kelasemisi}
+                    {item.kerja}
                   </td>
                   <td className="px-6 text-[#000000] text-center text-sm py-4 whitespace-nowrap">
                     {item.status && (

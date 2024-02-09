@@ -1,12 +1,15 @@
 import React from 'react'
 import { CiSearch } from 'react-icons/ci'
 import { FaPlus } from 'react-icons/fa'
-import { Link } from 'react-router-dom'
-import { Outlet } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import ListSpt from '../../components/layout/Spt/ListSpt'
 
 
 const Spt = () => {
+    const location = useLocation();
+    const isLinkActive = (to) => {
+        return location.pathname === to;
+    }
     return (
         <div>
             <h1 className="text-[#5E5E5E] text-2xl font-bold">SPT</h1>

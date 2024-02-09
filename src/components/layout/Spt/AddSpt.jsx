@@ -60,7 +60,6 @@ const AddSpt = () => {
             name: "kode_kegiatan",
           },
         ]}
-        dragInput={{}}
       />
     </div>
   );

@@ -50,6 +50,7 @@ import AddSpt from "./components/layout/Spt/AddSpt";
 import Kepegawaian from "./pages/SPT/Kepegawaian";
 import AddPegawai from "./components/layout/kepegawaian/AddKepegawaian";
 import Arsip from "./components/layout/Arsip/Arsip";
+import AkunSpt from "./pages/SPT/AkunSpt";
 
 const router = createBrowserRouter([
   {
@@ -270,6 +271,10 @@ const router = createBrowserRouter([
           },
         ],
       },
+      {
+        path: "akun",
+        element: <AkunSpt />,
+      }
     ],
   },
 ]);
