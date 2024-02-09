@@ -35,12 +35,14 @@ const Sidebar = () => {
       largeIcon: LargeDashboard,
       navTitle: "Arsip",
       navTo: "arsip",
+      navigates: ["/spt/arsip"]
     },
     {
       icon: <IoFolderOpenOutline />,
       largeIcon: LargeDashboard,
       navTitle: "Dokumen",
-      navTo: "dokumen",
+      navTo: "dokumen/sop",
+      navigates: ["/spt/dokumen/sop", "/spt/dokumen/template"]
     },
     {
       icon: <FaUser />,
@@ -65,7 +67,7 @@ const Sidebar = () => {
   return (
     <>
       {!isSimple ? (
-        <div className="w-[304px] min-h-screen py-4">
+        <div className="min-w-[304px] min-h-screen py-4">
           <div className="bg-slate-100 h-full rounded-3xl">
             <div className="p-6 flex flex-col justify-between h-full">
               <div className="flex flex-col gap-y-6">

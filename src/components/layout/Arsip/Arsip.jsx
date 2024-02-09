@@ -9,7 +9,7 @@ const Arsip = () => {
     <div className="">
       <h1 className="text-[#5E5E5E] text-2xl font-bold">Arsip</h1>
       <div className="flex mt-[23px] justify-between">
-        <div className="opacity-0  flex list-none bg-[#F6F8FF] rounded-[40px] py-4 px-[30px] text-[16px] 2xl:text-lg text-[#676F82] font-medium space-x-3"></div>
+        <div className="opacity-0 w-1 flex list-none bg-[#F6F8FF] rounded-[40px] py-4 text-[16px] 2xl:text-lg text-[#676F82] font-medium space-x-3"></div>
         <div className="relative">
           <input
             type="search"

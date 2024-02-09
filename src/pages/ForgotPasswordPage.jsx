@@ -39,10 +39,10 @@ const ForgotPasswordPage = () => {
 
     return (
         <div className="flex h-screen">
-            <div className="w-1/2 bg-[#F6F8FF] px-[89px] py-12 flex items-center justify-center">
+            <div className="w-1/2 bg-[#F6F8FF] px-[89px] py-12 flex items-center justify-center [@media(max-width:1000px)]:hidden">
                 <img src={LoginIcon} alt="Sigarda" className="w-[442px] h-[532px]" />
             </div>
-            <div className="w-1/2 bg-darker p-32 flex items-center justify-center">
+            <div className="w-1/2 bg-darker p-14 flex items-center justify-center [@media(max-width:1000px)]:w-full [@media(max-width:1000px)]:p-32">
                 <form className="bg-[#fff] py-[80px] px-10 2xl:px-[60px] rounded-[40px]">
                     <img src={Sigarda} alt="Sigarda" className='w-[140px]' />
                     <h2 className="text-[40px] leading-[52px] text-[#153060] font-normal my-8">Lupa Password</h2>

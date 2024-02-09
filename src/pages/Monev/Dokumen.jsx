@@ -1,22 +1,26 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { CiSearch } from "react-icons/ci";
 import { Link, useLocation } from "react-router-dom";
 import { Outlet } from "react-router-dom";
 
-const Dokumen = () => {
+const Dokumen = ({ linkTo = {} }) => {
+  const { sop, template } = linkTo;
   const location = useLocation();
   const isLinkActive = (to) => {
+    if (sop || template) {
+      return location.pathname.includes(to);
+    }
     return location.pathname === to;
   };
   return (
     <div className="">
       <h1 className="text-[#5E5E5E] text-2xl font-bold">Dokumen</h1>
-      <div className="flex mt-[23px] justify-between">
+      <div className="flex mt-[23px] justify-between overflow-auto">
         <div className="flex list-none bg-[#F6F8FF] rounded-[40px] py-4 px-[30px] text-[16px] 2xl:text-lg text-[#676F82] font-medium space-x-3">
           <Link
-            to="/dokumen"
+            to={sop ? sop : "/dokumen"}
             className={`cursor-pointer ${
-              isLinkActive("/dokumen")
+              isLinkActive(sop ? sop : "/dokumen")
                 ? "text-[#334158] font-semibold underline"
                 : ""
             }`}
@@ -24,9 +28,9 @@ const Dokumen = () => {
             SOP
           </Link>
           <Link
-            to="/dokumen/template"
+            to={template ? template : "/dokumen/template"}
             className={`cursor-pointer ${
-              isLinkActive("/dokumen/template")
+              isLinkActive(template ? template : "/dokumen/template")
                 ? "text-[#334158] font-semibold underline"
                 : ""
             }`}

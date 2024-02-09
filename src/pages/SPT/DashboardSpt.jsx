@@ -6,8 +6,8 @@ const DashboardSpt = () => {
     return (
         <div className="flex h-screen overflow-hidden">
             <Sidebar />
-            <div className="flex w-full">
-                <div className="p-2 md:p-8 overflow-auto flex-grow">
+            <div className="flex w-full overflow-auto">
+                <div className="p-2 md:p-8 overflow-auto w-full">
                     <Outlet />
                 </div>
             </div>

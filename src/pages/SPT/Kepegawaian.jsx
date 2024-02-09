@@ -18,7 +18,7 @@ const Kepegawaian = () => {
         return "";
     }
   };
-  const data = pegawai.data
+  const data = pegawai.data;
   return (
     <div>
       <h1 className="text-[#5E5E5E] text-2xl font-bold">Kepegawaian</h1>
@@ -46,73 +46,75 @@ const Kepegawaian = () => {
       </div>
       <div>
         <div className="p-11 bg-[#F6F8FF] rounded-[40px] mt-10">
-          <table className="rounded-[40px] w-full bg-[#fff]">
-            <thead className="">
-              <tr className="">
-                <th className="px-6 py-3 text-center text-sm font-semibold text-[#334158] tracking-wider">
-                  #
-                </th>
-                <th className="px-6 py-3 text-center text-sm font-semibold text-[#334158] tracking-wider">
-                  Nama Pegawai
-                </th>
-                <th className="px-6 py-3 text-center text-sm font-semibold text-[#334158] tracking-wider">
-                  NIP
-                </th>
-                <th className="px-6 py-3 text-center text-sm font-semibold text-[#334158] tracking-wider">
-                  Golongan
-                </th>
-                <th className="px-6 py-3 text-center text-sm font-semibold text-[#334158] tracking-wider">
-                  Jabatan
-                </th>
-                <th className="px-6 py-3 text-center text-sm font-semibold text-[#334158] tracking-wider">
-                  Tim Kerja
-                </th>
-                <th className="px-6 py-3 text-center text-sm font-semibold text-[#334158] tracking-wider">
-                  Status
-                </th>
-              </tr>
-            </thead>
-            {data.map((item) => (
-              <tbody className="bg-white">
-                <tr key={item.id}>
-                  <td className="px-6 text-[#676F82] text-center text-sm py-4 whitespace-nowrap">
-                    {item.id}
-                  </td>
-                  <td className="px-6 text-[#000000] text-center text-sm py-4 whitespace-nowrap">
-                    {item.nama}
-                  </td>
-                  <td className="px-6 text-[#000000] text-center text-sm py-4 whitespace-nowrap">
-                    {item.nip}
-                  </td>
-                  <td className="px-6 text-[#000000] text-center text-sm py-4 whitespace-nowrap">
-                    {item.golongan}
-                  </td>
-                  <td className="px-6 text-[#000000] text-center text-sm py-4 whitespace-nowrap">
-                    {item.jabatan}
-                  </td>
-                  <td className="px-6 text-[#000000] text-center text-sm py-4 whitespace-nowrap">
-                    {item.kerja}
-                  </td>
-                  <td className="px-6 text-[#000000] text-center text-sm py-4 whitespace-nowrap">
-                    {item.status && (
-                      <div
-                        className={`flex items-center justify-center gap-1 rounded-full py-2 bg-opacity-25 text-xs font-medium ${getStatus(
-                          item.status
-                        )}`}
-                      >
-                        <div
-                          className={`rounded-full ${getStatus(
-                            item.status
-                          )} w-[8px] h-[8px] font-medium`}
-                        ></div>
-                        <p>{item.status}</p>
-                      </div>
-                    )}
-                  </td>
+          <div className="rounded-[40px] w-full bg-[#fff] overflow-auto">
+            <table className="w-full">
+              <thead className="">
+                <tr className="">
+                  <th className="px-6 py-3 text-center text-sm font-semibold text-[#334158] tracking-wider">
+                    #
+                  </th>
+                  <th className="px-6 py-3 text-center text-sm font-semibold text-[#334158] tracking-wider">
+                    Nama Pegawai
+                  </th>
+                  <th className="px-6 py-3 text-center text-sm font-semibold text-[#334158] tracking-wider">
+                    NIP
+                  </th>
+                  <th className="px-6 py-3 text-center text-sm font-semibold text-[#334158] tracking-wider">
+                    Golongan
+                  </th>
+                  <th className="px-6 py-3 text-center text-sm font-semibold text-[#334158] tracking-wider">
+                    Jabatan
+                  </th>
+                  <th className="px-6 py-3 text-center text-sm font-semibold text-[#334158] tracking-wider">
+                    Tim Kerja
+                  </th>
+                  <th className="px-6 py-3 text-center text-sm font-semibold text-[#334158] tracking-wider">
+                    Status
+                  </th>
                 </tr>
-              </tbody>
-            ))}
-          </table>
+              </thead>
+              {data.map((item) => (
+                <tbody className="bg-white">
+                  <tr key={item.id}>
+                    <td className="px-6 text-[#676F82] text-center text-sm py-4 whitespace-nowrap">
+                      {item.id}
+                    </td>
+                    <td className="px-6 text-[#000000] text-center text-sm py-4 whitespace-nowrap">
+                      {item.nama}
+                    </td>
+                    <td className="px-6 text-[#000000] text-center text-sm py-4 whitespace-nowrap">
+                      {item.nip}
+                    </td>
+                    <td className="px-6 text-[#000000] text-center text-sm py-4 whitespace-nowrap">
+                      {item.golongan}
+                    </td>
+                    <td className="px-6 text-[#000000] text-center text-sm py-4 whitespace-nowrap">
+                      {item.jabatan}
+                    </td>
+                    <td className="px-6 text-[#000000] text-center text-sm py-4 whitespace-nowrap">
+                      {item.kerja}
+                    </td>
+                    <td className="px-6 text-[#000000] text-center text-sm py-4 whitespace-nowrap">
+                      {item.status && (
+                        <div
+                          className={`flex items-center justify-center gap-1 rounded-full py-2 bg-opacity-25 text-xs font-medium ${getStatus(
+                            item.status
+                          )}`}
+                        >
+                          <div
+                            className={`rounded-full ${getStatus(
+                              item.status
+                            )} w-[8px] h-[8px] font-medium`}
+                          ></div>
+                          <p>{item.status}</p>
+                        </div>
+                      )}
+                    </td>
+                  </tr>
+                </tbody>
+              ))}
+            </table>
+          </div>
         </div>
       </div>
     </div>

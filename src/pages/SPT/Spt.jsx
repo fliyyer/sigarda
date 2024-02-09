@@ -11,10 +11,10 @@ const Spt = () => {
         return location.pathname === to;
     }
     return (
-        <div>
+        <div className='overflow-hidden'>
             <h1 className="text-[#5E5E5E] text-2xl font-bold">SPT</h1>
             <div className='flex justify-between mt-7 items-center'>
-                <Link to='add-spt' className="flex gap-2 hover:underline mt-[15px] text-sm pl-6 items-center">
+                <Link to='add-spt' className="flex gap-2 hover:underline text-sm pl-6 items-center">
                     <span className="bg-main-color w-[32px] text-[18px] h-[32px] flex justify-center items-center rounded-full text-white">
                         <FaPlus />
                     </span>

@@ -20,7 +20,7 @@ const AddSpt = () => {
 
   return (
     <div>
-      <h1 className="text-[#5E5E5E] text-2xl font-bold">SPT</h1>
+      <h1 className="text-[#5E5E5E] text-2xl font-bold">Buat SPT</h1>
       <AddPage
         inputs={[
           {

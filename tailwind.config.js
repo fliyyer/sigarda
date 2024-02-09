@@ -15,7 +15,7 @@ export default {
         'warning' : '#FFCC00',
         'info' : '#0063F7',
         'success' : '#06C270'
-      }
+      },
     },
     maxWidth: {
       '3xl': '1440px',

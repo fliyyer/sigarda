@@ -9,8 +9,8 @@ const AddFileDokumen = () => {
   };
 
   return (
-    <div className='p-11 bg-[#F6F8FF] rounded-lg flex flex-col'>
-      <div className='flex border p-4 border-dashed rounded-xl border-[#4676FB] items-center gap-6 relative'>
+    <div className='p-11 bg-[#F6F8FF] rounded-lg flex flex-col max-[800px]:p-6'>
+      <div className='flex border p-4 border-dashed rounded-xl border-[#4676FB] items-center gap-6 relative max-[800px]:flex-col'>
         <img src={Clouds} alt="" />
         <div>
           <p className='text-[#3A3A49]'>Pilih file atau drag & drop ke sini</p>

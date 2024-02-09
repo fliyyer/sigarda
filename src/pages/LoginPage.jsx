@@ -66,10 +66,10 @@ const LoginPage = () => {
 
   return (
     <div className="flex h-screen">
-      <div className="w-1/2 bg-[#F6F8FF] px-[89px] py-12 flex items-center justify-center">
+      <div className="w-1/2 bg-[#F6F8FF] px-[89px] py-12 flex items-center justify-center [@media(max-width:1000px)]:hidden">
         <img src={LoginIcon} alt="Sigarda" className="w-[442px] h-[532px] " />
       </div>
-      <div className="w-1/2 bg-darker flex items-center justify-center">
+      <div className="w-1/2 bg-darker flex items-center justify-center [@media(max-width:1000px)]:w-full">
         <form className="bg-[#fff] p-12 rounded-[40px]">
           <h2 className="text-[20px] leading-[28px] tracking-[0.3px] font-semibold mb-[24px]">
             Selamat Datang di SIGARDA

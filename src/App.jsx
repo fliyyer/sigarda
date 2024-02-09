@@ -259,10 +259,10 @@ const router = createBrowserRouter([
       },
       {
         path: "dokumen",
-        element: <Dokumen />,
+        element: <Dokumen linkTo={{sop: "sop", template: "template"}} />,
         children: [
           {
-            index: true,
+            path: "sop",
             element: <TabelDocument />,
           },
           {
