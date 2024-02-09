@@ -4,7 +4,7 @@ import DragInput from "./InputType/DragInput";
 
 const AddPage = ({ inputs, dragInput, submit }) => {
   return (
-    <div className="container flex mt-8 gap-14">
+    <div className="container flex mt-8 gap-14 flex-wrap">
       <form
         onSubmit={submit}
         className="w-[400px] bg-[#F6F8FF] p-10 rounded-[40px] flex flex-col"

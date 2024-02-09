@@ -4,7 +4,6 @@ import { Link, useLocation } from "react-router-dom";
 import { Outlet } from "react-router-dom";
 import api from "../../services/api";
 
-
 export const InitValiadsiContext = createContext();
 
 const ValidasiIsr = () => {
@@ -13,7 +12,10 @@ const ValidasiIsr = () => {
     return location.pathname === to;
   };
 
-  const isAddRoute = ["/validasi/add-microwave", "/validasi/add-non-microwave"].includes(location.pathname);
+  const isAddRoute = [
+    "/validasi/add-microwave",
+    "/validasi/add-non-microwave",
+  ].includes(location.pathname);
 
   const [tableLink, setTableLink] = useState([]);
   const [tableNonLink, setTableNonLink] = useState([]);
@@ -31,7 +33,7 @@ const ValidasiIsr = () => {
     } catch (error) {
       console.log(error);
     }
-  }
+  };
 
   const fetchTableNonLink = async () => {
     try {
@@ -40,12 +42,12 @@ const ValidasiIsr = () => {
     } catch (error) {
       console.log(error);
     }
-  }
+  };
 
   useEffect(() => {
     fetchTableLink();
     fetchTableNonLink();
-  }, [location])
+  }, [location]);
 
   const ContextValidasi = {
     linkPage: {
@@ -53,8 +55,8 @@ const ValidasiIsr = () => {
         value: !searchTable
           ? tableLink
           : tableLink.filter((v) =>
-            v.client.toLowerCase().includes(searchTable.toLowerCase())
-          ),
+              v.client.toLowerCase().includes(searchTable.toLowerCase())
+            ),
         setValue: setTableLink,
       },
     },
@@ -63,34 +65,36 @@ const ValidasiIsr = () => {
         value: !searchTable
           ? tableNonLink
           : tableNonLink.filter((v) =>
-            v.client.toLowerCase().includes(searchTable.toLowerCase())
-          ),
+              v.client.toLowerCase().includes(searchTable.toLowerCase())
+            ),
         setValue: setTableNonLink,
       },
     },
-  }
+  };
 
   return (
     <div className="">
       <h1 className="text-[#5E5E5E] text-2xl font-bold">Validasi ISR</h1>
       {!isAddRoute && (
-        <div className="flex mt-[23px] justify-between">
+        <div className="flex mt-[23px] justify-between [@media(max-width:1000px)]:flex-wrap [@media(max-width:1000px)]:gap-y-6">
           <div className="flex list-none bg-[#F6F8FF] rounded-[40px] py-4 px-[30px] text-[16px] 2xl:text-lg text-[#676F82] font-medium space-x-3">
             <Link
               to="/validasi"
-              className={`cursor-pointer ${isLinkActive("/validasi")
-                ? "text-[#334158] font-semibold underline"
-                : ""
-                }`}
+              className={`cursor-pointer ${
+                isLinkActive("/validasi")
+                  ? "text-[#334158] font-semibold underline"
+                  : ""
+              }`}
             >
               Microwave Link
             </Link>
             <Link
               to="/validasi/non-link"
-              className={`cursor-pointer ${isLinkActive("/validasi/non-link")
-                ? "text-[#334158] font-semibold underline"
-                : ""
-                }`}
+              className={`cursor-pointer ${
+                isLinkActive("/validasi/non-link")
+                  ? "text-[#334158] font-semibold underline"
+                  : ""
+              }`}
             >
               Non Microwave Link
             </Link>

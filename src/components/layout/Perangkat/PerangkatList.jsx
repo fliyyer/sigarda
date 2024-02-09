@@ -24,8 +24,9 @@ const PerangkatList = () => {
           Tambah Data
         </Link>
       </div>
-      <div className="overflow-x-auto p-11 bg-[#F6F8FF] rounded-[40px] mt-10">
-        <table className='min-w-full rounded-[40px] bg-[#fff]'>
+      <div className="p-11 bg-[#F6F8FF] rounded-[40px] mt-10">
+      <div className="overflow-auto rounded-[40px]">
+        <table className='min-w-full bg-[#fff]'>
           <thead className=''>
             <tr className=''>
               <th className='px-6 py-3 text-center text-sm font-semibold text-[#334158] tracking-wider'>#</th>
@@ -49,6 +50,7 @@ const PerangkatList = () => {
             </tbody>
           ))}
         </table>
+      </div>
       </div>
     </div>
   )

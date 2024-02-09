@@ -1,9 +1,8 @@
-import React from 'react'
-import { CiSearch } from 'react-icons/ci'
-import { FaPlus } from 'react-icons/fa'
-import { Link, useLocation } from 'react-router-dom'
-import { Outlet } from 'react-router-dom'
-
+import React from "react";
+import { CiSearch } from "react-icons/ci";
+import { FaPlus } from "react-icons/fa";
+import { Link, useLocation } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 
 const Tamu = () => {
   const location = useLocation();
@@ -11,12 +10,15 @@ const Tamu = () => {
     return location.pathname === to;
   };
 
-  const isAddRoute = location.pathname === '/pelayanan/tamu/add';
+  const isAddRoute = location.pathname === "/pelayanan/tamu/add";
   return (
     <div>
       <h1 className="text-[#5E5E5E] text-2xl font-bold">Buku Tamu</h1>
-      <div className='flex justify-between mt-7 items-center'>
-        <Link to='add' className="flex gap-2 hover:underline mt-[15px] text-sm pl-6 items-center">
+      <div className="flex mt-[23px] justify-between [@media(max-width:1000px)]:flex-wrap [@media(max-width:1000px)]:gap-y-6">
+        <Link
+          to="add"
+          className="flex gap-2 hover:underline mt-[15px] text-sm pl-6 items-center"
+        >
           <span className="bg-main-color w-[32px] text-[18px] h-[32px] flex justify-center items-center rounded-full text-white">
             <FaPlus />
           </span>
@@ -40,7 +42,7 @@ const Tamu = () => {
         <Outlet />
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Tamu
+export default Tamu;

@@ -67,7 +67,7 @@ const Sidebar = () => {
   return (
     <>
       {!isSimple ? (
-        <div className="min-w-[304px] min-h-screen py-4">
+        <div className="w-[304px] min-h-screen py-4">
           <div className="bg-slate-100 h-full rounded-3xl">
             <div className="p-6 flex flex-col justify-between h-full">
               <div className="flex flex-col gap-y-6">

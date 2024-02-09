@@ -37,7 +37,7 @@ const TableTemplate = () => {
     <div className="container mt-8">
       <div className="bg-[#F6F8FF] py-5 rounded-[40px] px-8 mx-auto">
         <div className="overflow-auto">
-          <table className="min-w-full  overflow-hidden">
+          <table className="min-w-full overflow-hidden">
             <thead className="">
               <tr>
                 <th className="py-4 text-left px-4"></th>
