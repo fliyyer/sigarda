@@ -1,68 +1,69 @@
-import React, { createContext, useEffect, useState } from "react";
+import React, { createContext, useEffect, useState } from 'react';
 import {
   RouterProvider,
   createBrowserRouter,
   useNavigate,
-} from "react-router-dom";
-import LoginPage from "./pages/LoginPage";
-import ForgotPasswordPage from "./pages/ForgotPasswordPage";
-import DashboardMonev from "./pages/Monev/DashboardMonev";
-import Dashboard from "./pages/Monev/Dashboard";
-import Monitoring from "./pages/Monev/Monitoring";
-import MonitoringTarget from "./components/layout/Monitoring/MonitoringTarget";
-import Identifikasi from "./components/layout/Monitoring/Identifikasi";
-import Sims from "./components/layout/Monitoring/Sims";
-import SimsJatim from "./components/layout/Monitoring/SimsJatim";
-import SimsMataram from "./components/layout/Monitoring/SimsMataram";
-import AddFrekuensi from "./components/ui/AddFrekuensi";
-import Pengukuran from "./pages/Monev/Pengukuran";
-import ValidasiIsr from "./pages/Monev/Validasi";
-import MicrowaveLink from "./components/layout/ValidasiIsr/MicrowaveLink";
-import MicrowaveNonLink from "./components/layout/ValidasiIsr/MicrowaveNonLink";
-import Dokumen from "./pages/Monev/Dokumen";
-import Akun from "./pages/Monev/Akun";
-import DashboardPelayanan from "./pages/Pelayanan/DashboardPelayanan";
-import DashboardPel from "./pages/Pelayanan/Dashboard";
-import Perangkat from "./pages/Pelayanan/Perangkat";
-import PerangkatList from "./components/layout/Perangkat/PerangkatList";
-import PeminjamanList from "./components/layout/Perangkat/PeminjamanList";
-import Unar from "./pages/Pelayanan/Unar";
-import Tamu from "./pages/Pelayanan/Tamu";
-import AddPemimnjam from "./components/ui/pelayanan/AddPemimnjam";
-import AddPerangkat from "./components/ui/pelayanan/AddPerangkat";
-import ListTamu from "./components/layout/Tamu/ListTamu";
-import AddTamu from "./components/ui/tamu/AddTamu";
-import FrekuensiAddPage from "./components/layout/Monitoring/FrekuensiAddPage";
-import AddSimsJatim from "./components/layout/Monitoring/AddSimsJatim";
-import AddSimsMataram from "./components/layout/Monitoring/AddSimsMataram";
-import AddPengukuran from "./components/layout/Pengukuran/AddPengukuran";
-import AddMicrowave from "./components/ui/Validasi/AddMicrowave";
-import AddNonMicrowave from "./components/ui/Validasi/AddNonMicrowafe";
-import AddUnar from "./components/ui/pelayanan/AddUnar";
-import ListUnar from "./components/layout/Unar/ListUnar";
-import DashboardSpt from "./pages/SPT/DashboardSpt";
-import Spt from "./pages/SPT/Spt";
-import ListSpt from "./components/layout/Spt/ListSpt";
-import { getUserLogin } from "./services/api";
-import TabelDocument from "./components/layout/Dokumen/TableDokumen";
-import TableTemplate from "./components/layout/Dokumen/TableTemplate";
-import AddSpt from "./components/layout/Spt/AddSpt";
-import Kepegawaian from "./pages/SPT/Kepegawaian";
-import AddPegawai from "./components/layout/kepegawaian/AddKepegawaian";
-import Arsip from "./components/layout/Arsip/Arsip";
-import AkunSpt from "./pages/SPT/AkunSpt";
+} from 'react-router-dom';
+import LoginPage from './pages/LoginPage';
+import ForgotPasswordPage from './pages/ForgotPasswordPage';
+import DashboardMonev from './pages/Monev/DashboardMonev';
+import Dashboard from './pages/Monev/Dashboard';
+import Monitoring from './pages/Monev/Monitoring';
+import MonitoringTarget from './components/layout/Monitoring/MonitoringTarget';
+import Identifikasi from './components/layout/Monitoring/Identifikasi';
+import Sims from './components/layout/Monitoring/Sims';
+import SimsJatim from './components/layout/Monitoring/SimsJatim';
+import SimsMataram from './components/layout/Monitoring/SimsMataram';
+import AddFrekuensi from './components/ui/AddFrekuensi';
+import Pengukuran from './pages/Monev/Pengukuran';
+import ValidasiIsr from './pages/Monev/Validasi';
+import MicrowaveLink from './components/layout/ValidasiIsr/MicrowaveLink';
+import MicrowaveNonLink from './components/layout/ValidasiIsr/MicrowaveNonLink';
+import Dokumen from './pages/Monev/Dokumen';
+import Akun from './pages/Monev/Akun';
+import DashboardPelayanan from './pages/Pelayanan/DashboardPelayanan';
+import DashboardPel from './pages/Pelayanan/Dashboard';
+import Perangkat from './pages/Pelayanan/Perangkat';
+import PerangkatList from './components/layout/Perangkat/PerangkatList';
+import PeminjamanList from './components/layout/Perangkat/PeminjamanList';
+import Unar from './pages/Pelayanan/Unar';
+import Tamu from './pages/Pelayanan/Tamu';
+import AddPemimnjam from './components/ui/pelayanan/AddPemimnjam';
+import AddPerangkat from './components/ui/pelayanan/AddPerangkat';
+import ListTamu from './components/layout/Tamu/ListTamu';
+import AddTamu from './components/ui/tamu/AddTamu';
+import FrekuensiAddPage from './components/layout/Monitoring/FrekuensiAddPage';
+import AddSimsJatim from './components/layout/Monitoring/AddSimsJatim';
+import AddSimsMataram from './components/layout/Monitoring/AddSimsMataram';
+import AddPengukuran from './components/layout/Pengukuran/AddPengukuran';
+import AddMicrowave from './components/ui/Validasi/AddMicrowave';
+import AddNonMicrowave from './components/ui/Validasi/AddNonMicrowafe';
+import AddUnar from './components/ui/pelayanan/AddUnar';
+import ListUnar from './components/layout/Unar/ListUnar';
+import DashboardSpt from './pages/SPT/DashboardSpt';
+import Spt from './pages/SPT/Spt';
+import ListSpt from './components/layout/Spt/ListSpt';
+import { getUserLogin } from './services/api';
+import TabelDocument from './components/layout/Dokumen/TableDokumen';
+import TableTemplate from './components/layout/Dokumen/TableTemplate';
+import AddSpt from './components/layout/Spt/AddSpt';
+import Kepegawaian from './pages/SPT/Kepegawaian';
+import AddPegawai from './components/layout/kepegawaian/AddKepegawaian';
+import Arsip from './components/layout/Arsip/Arsip';
+import AkunSpt from './pages/SPT/AkunSpt';
+import Register from './pages/Register';
 
 const router = createBrowserRouter([
   {
-    path: "/login",
+    path: '/login',
     element: <LoginPage />,
   },
   {
-    path: "/forgot-password",
+    path: '/forgot-password',
     element: <ForgotPasswordPage />,
   },
   {
-    path: "/",
+    path: '/',
     element: <DashboardMonev />,
     children: [
       {
@@ -70,11 +71,11 @@ const router = createBrowserRouter([
         element: <Dashboard />,
       },
       {
-        path: "/dashboard",
+        path: '/dashboard',
         element: <Dashboard />,
       },
       {
-        path: "/monitoring",
+        path: '/monitoring',
         element: <Monitoring />,
         children: [
           {
@@ -82,23 +83,23 @@ const router = createBrowserRouter([
             element: <MonitoringTarget />,
           },
           {
-            path: "identifikasi",
+            path: 'identifikasi',
             element: <Identifikasi />,
           },
           {
-            path: "add",
+            path: 'add',
             element: <FrekuensiAddPage />,
           },
           {
-            path: "add-jatim",
+            path: 'add-jatim',
             element: <AddSimsJatim />,
           },
           {
-            path: "add-mataram",
+            path: 'add-mataram',
             element: <AddSimsMataram />,
           },
           {
-            path: "sims",
+            path: 'sims',
             element: <Sims />,
             children: [
               {
@@ -106,7 +107,7 @@ const router = createBrowserRouter([
                 element: <SimsJatim />,
               },
               {
-                path: "mataram",
+                path: 'mataram',
                 element: <SimsMataram />,
               },
             ],
@@ -114,17 +115,17 @@ const router = createBrowserRouter([
         ],
       },
       {
-        path: "pengukuran",
+        path: 'pengukuran',
         element: <Pengukuran />,
         children: [
           {
-            path: "add",
+            path: 'add',
             element: <AddPengukuran />,
           },
         ],
       },
       {
-        path: "validasi",
+        path: 'validasi',
         element: <ValidasiIsr />,
         children: [
           {
@@ -132,21 +133,21 @@ const router = createBrowserRouter([
             element: <MicrowaveLink />,
           },
           {
-            path: "non-link",
+            path: 'non-link',
             element: <MicrowaveNonLink />,
           },
           {
-            path: "add-microwave",
+            path: 'add-microwave',
             element: <AddMicrowave />,
           },
           {
-            path: "add-non-microwave",
+            path: 'add-non-microwave',
             element: <AddNonMicrowave />,
           },
         ],
       },
       {
-        path: "dokumen",
+        path: 'dokumen',
         element: <Dokumen />,
         children: [
           {
@@ -154,19 +155,19 @@ const router = createBrowserRouter([
             element: <TabelDocument />,
           },
           {
-            path: "template",
+            path: 'template',
             element: <TableTemplate />,
           },
         ],
       },
       {
-        path: "akun",
+        path: 'akun',
         element: <Akun />,
       },
     ],
   },
   {
-    path: "pelayanan",
+    path: 'pelayanan',
     element: <DashboardPelayanan />,
     children: [
       {
@@ -174,11 +175,11 @@ const router = createBrowserRouter([
         element: <DashboardPel />,
       },
       {
-        path: "dashboard",
+        path: 'dashboard',
         element: <DashboardPel />,
       },
       {
-        path: "perangkat",
+        path: 'perangkat',
         element: <Perangkat />,
         children: [
           {
@@ -186,21 +187,21 @@ const router = createBrowserRouter([
             element: <PerangkatList />,
           },
           {
-            path: "peminjaman",
+            path: 'peminjaman',
             element: <PeminjamanList />,
           },
           {
-            path: "add",
+            path: 'add',
             element: <AddPerangkat />,
           },
           {
-            path: "/pelayanan/perangkat/peminjaman/add-peminjaman",
+            path: '/pelayanan/perangkat/peminjaman/add-peminjaman',
             element: <AddPemimnjam />,
           },
         ],
       },
       {
-        path: "unar",
+        path: 'unar',
         element: <Unar />,
         children: [
           {
@@ -208,13 +209,13 @@ const router = createBrowserRouter([
             element: <ListUnar />,
           },
           {
-            path: "add",
+            path: 'add',
             element: <AddUnar />,
           },
         ],
       },
       {
-        path: "tamu",
+        path: 'tamu',
         element: <Tamu />,
         children: [
           {
@@ -222,19 +223,19 @@ const router = createBrowserRouter([
             element: <ListTamu />,
           },
           {
-            path: "add",
+            path: 'add',
             element: <AddTamu />,
           },
         ],
       },
       {
-        path: "akun",
+        path: 'akun',
         element: <Akun />,
       },
     ],
   },
   {
-    path: "spt",
+    path: 'spt',
     element: <DashboardSpt />,
     children: [
       {
@@ -242,40 +243,44 @@ const router = createBrowserRouter([
         element: <Spt />,
       },
       {
-        path: "add-spt",
+        path: 'add-spt',
         element: <AddSpt />,
       },
       {
-        path: "kepegawaian",
+        path: 'kepegawaian',
         element: <Kepegawaian />,
       },
       {
-        path: "add-pegawai",
+        path: 'add-pegawai',
         element: <AddPegawai />,
       },
       {
-        path: "arsip",
+        path: 'arsip',
         element: <Arsip />,
       },
       {
-        path: "dokumen",
-        element: <Dokumen linkTo={{sop: "sop", template: "template"}} />,
+        path: 'dokumen',
+        element: <Dokumen linkTo={{ sop: 'sop', template: 'template' }} />,
         children: [
           {
-            path: "sop",
+            path: 'sop',
             element: <TabelDocument />,
           },
           {
-            path: "template",
+            path: 'template',
             element: <TableTemplate />,
           },
         ],
       },
       {
-        path: "akun",
+        path: 'akun',
         element: <AkunSpt />,
-      }
+      },
     ],
+  },
+  {
+    path: '/register',
+    element: <Register />,
   },
 ]);
 

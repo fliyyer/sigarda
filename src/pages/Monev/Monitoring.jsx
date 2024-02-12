@@ -1,8 +1,9 @@
-import React, { createContext, useEffect, useState } from "react";
-import { CiSearch } from "react-icons/ci";
-import { Link, useLocation } from "react-router-dom";
-import { Outlet } from "react-router-dom";
-import api from "../../services/api";
+import React, { createContext, useEffect, useState } from 'react';
+import { CiSearch } from 'react-icons/ci';
+import { Link, useLocation } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
+import api from '../../services/api';
+import { Tooltip as ReactTooltip } from 'react-tooltip';
 
 export const InitMonitoringContext = createContext();
 
@@ -13,15 +14,15 @@ const Monitoring = () => {
   };
 
   const isAddRoute = [
-    "/monitoring/add",
-    "/monitoring/add-jatim",
-    "/monitoring/add-mataram",
+    '/monitoring/add',
+    '/monitoring/add-jatim',
+    '/monitoring/add-mataram',
   ].includes(location.pathname);
 
   const [tableIdentifikasi, setTableIdentifikasi] = useState([]);
   const [tableJatim, setTableJatim] = useState([]);
   const [tableMataram, setTableMataram] = useState([]);
-  const [searchTable, setSearchTable] = useState("");
+  const [searchTable, setSearchTable] = useState('');
 
   const handleChangeTable = (e, currLocation) => {
     const { value } = e.target;
@@ -69,7 +70,7 @@ const Monitoring = () => {
 
   const fetchTableFrekuensi = async () => {
     try {
-      const response = await api.get("/identifikasi.php");
+      const response = await api.get('/identifikasi.php');
       setTableIdentifikasi(response.data);
     } catch (error) {
       console.log(error);
@@ -78,7 +79,7 @@ const Monitoring = () => {
 
   const fetchTableSimsJatim = async () => {
     try {
-      const response = await api.get("/sims_jatim.php");
+      const response = await api.get('/sims_jatim.php');
       setTableJatim(response.data);
     } catch (error) {
       console.log(error);
@@ -87,7 +88,7 @@ const Monitoring = () => {
 
   const fetchTableSimsMataram = async () => {
     try {
-      const response = await api.get("/sims_mataram.php");
+      const response = await api.get('/sims_mataram.php');
       setTableMataram(response.data);
     } catch (error) {
       console.log(error);
@@ -107,34 +108,34 @@ const Monitoring = () => {
         <div className="flex mt-[23px] justify-between [@media(max-width:1000px)]:flex-wrap [@media(max-width:1000px)]:gap-y-6">
           <div className="flex list-none bg-[#F6F8FF] rounded-[40px] py-4 px-[30px] text-[16px] 2xl:text-lg text-[#676F82] font-medium space-x-3">
             <Link
+              data-tooltip-id="target"
               to="/monitoring"
               className={`cursor-pointer ${
-                isLinkActive("/monitoring")
-                  ? "text-[#334158] font-semibold underline"
-                  : ""
-              }`}
-            >
+                isLinkActive('/monitoring')
+                  ? 'text-[#334158] font-semibold underline'
+                  : ''
+              }`}>
               Target
             </Link>
             <Link
+              data-tooltip-id="iden"
               to="/monitoring/identifikasi"
               className={`cursor-pointer ${
-                isLinkActive("/monitoring/identifikasi")
-                  ? "text-[#334158] font-semibold underline"
-                  : ""
-              }`}
-            >
+                isLinkActive('/monitoring/identifikasi')
+                  ? 'text-[#334158] font-semibold underline'
+                  : ''
+              }`}>
               Identifikasi
             </Link>
             <Link
+              data-tooltip-id="sims"
               to="/monitoring/sims"
               className={`cursor-pointer ${
-                isLinkActive("/monitoring/sims") ||
-                isLinkActive("/monitoring/sims/mataram")
-                  ? "text-[#334158] font-semibold underline"
-                  : ""
-              }`}
-            >
+                isLinkActive('/monitoring/sims') ||
+                isLinkActive('/monitoring/sims/mataram')
+                  ? 'text-[#334158] font-semibold underline'
+                  : ''
+              }`}>
               SIMS
             </Link>
           </div>
@@ -150,6 +151,24 @@ const Monitoring = () => {
               <CiSearch className="w-5 h-5 text-[#AEB8CF]" />
             </div>
           </div>
+          <ReactTooltip
+            style={{ width: '210px', textAlign: 'left' }}
+            id="sims"
+            place="bottom-start"
+            content={`Klik Untuk Menampilkan Data SIMS`}
+          />
+          <ReactTooltip
+            style={{ width: '210px', textAlign: 'left' }}
+            id="iden"
+            place="bottom-start"
+            content={`Klik Untuk Menampilkan Data Identifikasi`}
+          />
+          <ReactTooltip
+            style={{ width: '210px', textAlign: 'left' }}
+            id="target"
+            place="bottom-start"
+            content={`Klik Untuk Menampilkan Data Target`}
+          />
         </div>
       )}
       <div>

@@ -1,35 +1,34 @@
-import React from "react";
-import { AiFillFolderOpen } from "react-icons/ai";
-import { BiEditAlt } from "react-icons/bi";
-import { SlOptionsVertical } from "react-icons/sl";
-import AddRepository from "./AddRepository";
-import AddFileDokumen from "./AddFileDokumen";
+import React from 'react';
+import { AiFillFolderOpen } from 'react-icons/ai';
+import { SlOptionsVertical } from 'react-icons/sl';
+import AddRepository from './AddRepository';
+import AddFileDokumen from './AddFileDokumen';
 
 const TableTemplate = () => {
   const data = [
     {
       no: 1,
-      folder: "Template",
-      nama: "Template Pengukuran Radio Siaran.pdf",
-      tanggal: "2022-11-03",
+      folder: 'Template',
+      nama: 'Template Pengukuran Radio Siaran.pdf',
+      tanggal: '2022-11-03',
     },
     {
       no: 2,
-      folder: "Template",
-      nama: "Template Pemeriksaan Microwave Link.pdf",
-      tanggal: "2022-11-07",
+      folder: 'Template',
+      nama: 'Template Pemeriksaan Microwave Link.pdf',
+      tanggal: '2022-11-07',
     },
     {
       no: 3,
-      folder: "Template",
-      nama: "Template Pengukuran Radio Siaran.pdf",
-      tanggal: "2022-11-03",
+      folder: 'Template',
+      nama: 'Template Pengukuran Radio Siaran.pdf',
+      tanggal: '2022-11-03',
     },
     {
       no: 4,
-      folder: "Template",
-      nama: "Template Pemeriksaan Microwave Link.pdf",
-      tanggal: "2022-11-07",
+      folder: 'Template',
+      nama: 'Template Pemeriksaan Microwave Link.pdf',
+      tanggal: '2022-11-07',
     },
   ];
 
@@ -53,9 +52,6 @@ const TableTemplate = () => {
                 <th className="py-4 text-left text-[14.4px] opacity-70 text-[#3A3A49] px-4">
                   Unggah
                 </th>
-                <th className="py-4 text-left text-[14.4px] opacity-70 text-[#3A3A49] px-4">
-                  Edit
-                </th>
                 <th className="py-4 text-left text-[14.4px] opacity-70 text-[#3A3A49] px-4"></th>
               </tr>
             </thead>
@@ -68,7 +64,7 @@ const TableTemplate = () => {
                       {item.no}
                     </td>
                     <td className="py-2 rounded-l-[10px] items-center text-[#4676FB] text-[13.891px] px-4">
-                      <AiFillFolderOpen className="inline-flex items-center text-2xl mb-1 mr-4" />{" "}
+                      <AiFillFolderOpen className="inline-flex items-center text-2xl mb-1 mr-4" />{' '}
                       {item.folder}
                     </td>
                     <td className="py-2 px-4">{item.nama}</td>
@@ -76,11 +72,6 @@ const TableTemplate = () => {
                     <td className="py-2 px-4">
                       <button className="bg-main-color text-[#FAFAFB] text-sm px-4 py-[6px] rounded-lg">
                         Unggah
-                      </button>
-                    </td>
-                    <td className="py-2 px-4">
-                      <button className="bg-main-color bg-opacity-10 p-3 rounded-full">
-                        <BiEditAlt className="text-main-color text-lg" />
                       </button>
                     </td>
                     <td className="rounded-r-[10px]">

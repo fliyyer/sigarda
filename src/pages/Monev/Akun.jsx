@@ -1,10 +1,10 @@
-import React, { useState, useRef, useEffect, useContext } from "react";
-import ProfilCrop from "../../components/ui/ProfileCrop";
-import api, { baseUrl, deleteToken, setUserLogin } from "../../services/api";
-import { useNavigate } from "react-router-dom";
-import Swal from "sweetalert2";
-import { ProfileContext } from "../../App";
-import login from "../../assets/image/Login.png"
+import React, { useState, useRef, useEffect, useContext } from 'react';
+import ProfilCrop from '../../components/ui/ProfileCrop';
+import api, { baseUrl, deleteToken, setUserLogin } from '../../services/api';
+import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
+import { ProfileContext } from '../../App';
+import login from '../../assets/image/Login.png';
 
 const Akun = () => {
   const { profile: profileUser, setProfile } = useContext(ProfileContext);
@@ -12,10 +12,10 @@ const Akun = () => {
   const [isCropPopupOpen, setIsCropPopupOpen] = useState(false);
   const fileInputRef = useRef(null);
   const [user, setUser] = useState({
-    id: "",
-    name: "",
-    email: "",
-    photo: "",
+    id: '',
+    name: '',
+    email: '',
+    photo: '',
   });
 
   const handleImageChange = (e) => {
@@ -64,21 +64,23 @@ const Akun = () => {
         `/register.php?id=${profileUser.id}`,
         updatedUser
       );
-      const responseProfile = await api.get(`/register.php?profile_id=${profileUser.id}`)
-      console.log(responseProfile)
+      const responseProfile = await api.get(
+        `/register.php?profile_id=${profileUser.id}`
+      );
+      console.log(responseProfile);
       setProfile(responseProfile.data);
-      setUserLogin(responseProfile.data)
+      setUserLogin(responseProfile.data);
       setProfileImage(null);
       Swal.fire({
-        icon: "success",
-        title: "Success!",
-        text: "Profile updated successfully!",
+        icon: 'success',
+        title: 'Success!',
+        text: 'Profile updated successfully!',
       });
     } catch (error) {
-      console.error("Error:", error);
+      console.error('Error:', error);
       Swal.fire({
-        icon: "error",
-        title: "Oops...",
+        icon: 'error',
+        title: 'Oops...',
         text: `Failed to save changes: ${error.message}`,
       });
     }
@@ -88,7 +90,7 @@ const Akun = () => {
 
   const handleLogout = () => {
     deleteToken();
-    navigate("/login");
+    navigate('/login');
   };
 
   useEffect(() => {
@@ -117,7 +119,9 @@ const Akun = () => {
                 <img src={profileImage} alt="" className="w-16 rounded-full" />
               ) : (
                 <img
-                  src={user.photo ? `${baseUrl}/photo_user/${user.photo}` : login}
+                  src={
+                    user.photo ? `${baseUrl}/photo_user/${user.photo}` : login
+                  }
                   alt=""
                   className="w-16 rounded-full"
                 />
@@ -128,9 +132,9 @@ const Akun = () => {
                 type="file"
                 accept="image/*"
                 onChange={handleImageChange}
-                style={{ display: "none" }}
+                style={{ display: 'none' }}
                 onClick={(e) => {
-                  e.target.value = null
+                  e.target.value = null;
                 }}
               />
             </label>
@@ -141,8 +145,7 @@ const Akun = () => {
           </div>
           <button
             onClick={handleLogout}
-            className="bg-[#F4485D] rounded-[40px] hover:bg-red-600 duration-100 ease-out text-sm text-white px-6 h-10"
-          >
+            className="bg-[#F4485D] rounded-[40px] hover:bg-red-600 duration-100 ease-out text-sm text-white px-6 h-10">
             Logout
           </button>
         </div>
@@ -154,14 +157,17 @@ const Akun = () => {
           className="w-full p-2 border border-[#E5E5E5] py-3 rounded-md mt-2"
         />
         <p className="mt-[34px] text-sm font-semibold">Email</p>
-        <p className="w-full p-2 border border-[#E5E5E5] bg-slate-100 py-3 rounded-md mt-2">{user.email}</p>
+        <p className="w-full p-2 border border-[#E5E5E5] bg-slate-100 py-3 rounded-md mt-2">
+          {user.email}
+        </p>
         <p className="mt-[34px] text-sm font-semibold">Role</p>
-        <p className="w-full p-2 border border-[#E5E5E5] py-3 bg-slate-100 capitalize rounded-md mt-2">{user.role}</p>
+        <p className="w-full p-2 border border-[#E5E5E5] py-3 bg-slate-100 capitalize rounded-md mt-2">
+          {user.role}
+        </p>
         <div className="flex mt-9 justify-end">
           <button
             onClick={handleSaveChanges}
-            className="bg-main-color rounded-[40px] hover:bg-blue-600 duration-100 ease-out text-sm text-white px-6 h-10"
-          >
+            className="bg-main-color rounded-[40px] hover:bg-blue-600 duration-100 ease-out text-sm text-white px-6 h-10">
             Simpan
           </button>
         </div>

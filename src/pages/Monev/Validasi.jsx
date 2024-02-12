@@ -1,8 +1,9 @@
-import React, { createContext, useEffect, useState } from "react";
-import { CiSearch } from "react-icons/ci";
-import { Link, useLocation } from "react-router-dom";
-import { Outlet } from "react-router-dom";
-import api from "../../services/api";
+import React, { createContext, useEffect, useState } from 'react';
+import { CiSearch } from 'react-icons/ci';
+import { Link, useLocation } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
+import { Tooltip as ReactTooltip } from 'react-tooltip';
+import api from '../../services/api';
 
 export const InitValiadsiContext = createContext();
 
@@ -13,13 +14,13 @@ const ValidasiIsr = () => {
   };
 
   const isAddRoute = [
-    "/validasi/add-microwave",
-    "/validasi/add-non-microwave",
+    '/validasi/add-microwave',
+    '/validasi/add-non-microwave',
   ].includes(location.pathname);
 
   const [tableLink, setTableLink] = useState([]);
   const [tableNonLink, setTableNonLink] = useState([]);
-  const [searchTable, setSearchTable] = useState("");
+  const [searchTable, setSearchTable] = useState('');
 
   const handleChangeTable = (e, currLocation) => {
     const { value } = e.target;
@@ -28,7 +29,7 @@ const ValidasiIsr = () => {
 
   const fetchTableLink = async () => {
     try {
-      const response = await api.get("/microwave_link.php");
+      const response = await api.get('/microwave_link.php');
       setTableLink(response.data);
     } catch (error) {
       console.log(error);
@@ -37,7 +38,7 @@ const ValidasiIsr = () => {
 
   const fetchTableNonLink = async () => {
     try {
-      const response = await api.get("/microwave_non_link.php");
+      const response = await api.get('/microwave_non_link.php');
       setTableNonLink(response.data);
     } catch (error) {
       console.log(error);
@@ -79,28 +80,35 @@ const ValidasiIsr = () => {
         <div className="flex mt-[23px] justify-between [@media(max-width:1000px)]:flex-wrap [@media(max-width:1000px)]:gap-y-6">
           <div className="flex list-none bg-[#F6F8FF] rounded-[40px] py-4 px-[30px] text-[16px] 2xl:text-lg text-[#676F82] font-medium space-x-3">
             <Link
+              data-tooltip-id="link"
+              data-tooltip-content="Menampilkan Data Microwave Link"
               to="/validasi"
               className={`cursor-pointer ${
-                isLinkActive("/validasi")
-                  ? "text-[#334158] font-semibold underline"
-                  : ""
-              }`}
-            >
+                isLinkActive('/validasi')
+                  ? 'text-[#334158] font-semibold underline'
+                  : ''
+              }`}>
               Microwave Link
             </Link>
             <Link
+              data-tooltip-id="no"
+              data-tooltip-content="Menampilkan Data Non Microwave Link"
               to="/validasi/non-link"
               className={`cursor-pointer ${
-                isLinkActive("/validasi/non-link")
-                  ? "text-[#334158] font-semibold underline"
-                  : ""
-              }`}
-            >
+                isLinkActive('/validasi/non-link')
+                  ? 'text-[#334158] font-semibold underline'
+                  : ''
+              }`}>
               Non Microwave Link
             </Link>
+            <ReactTooltip id="link" place="bottom" />
+            <ReactTooltip id="no" place="bottom" />
           </div>
+          <ReactTooltip id="search" place="top" />
           <div className="relative">
             <input
+              data-tooltip-id="search"
+              data-tooltip-content="Cari data lebih cepat dengan search nama Client"
               type="search"
               placeholder="Search"
               className="pl-10 pr-4 py-3 outline-none rounded-[40px] bg-[#F6F8FF]"

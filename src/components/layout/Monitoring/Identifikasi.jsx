@@ -1,23 +1,23 @@
-import React, { useContext, useEffect, useState } from "react";
-import { FaPlus } from "react-icons/fa";
-import { Link } from "react-router-dom";
-import { InitMonitoringContext } from "../../../pages/Monev/Monitoring";
-import cvTablePagination from "../../../utils/tablePagination";
-import Pagination from "@mui/material/Pagination";
-import { BiEditAlt } from "react-icons/bi";
-import { MdDelete } from "react-icons/md";
-import api from "../../../services/api";
-import Swal from "sweetalert2";
+import React, { useContext, useEffect, useState } from 'react';
+import { FaPlus } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
+import { InitMonitoringContext } from '../../../pages/Monev/Monitoring';
+import cvTablePagination from '../../../utils/tablePagination';
+import Pagination from '@mui/material/Pagination';
+import { MdDelete } from 'react-icons/md';
+import api from '../../../services/api';
+import { Tooltip as ReactTooltip } from 'react-tooltip';
+import Swal from 'sweetalert2';
 const getStatus = (status) => {
   switch (status) {
-    case "Off Air":
-      return "bg-[#F4485D] text-[#F4485D]";
-    case "On Air":
-      return "bg-[#16AE65] text-[#16AE65]";
-    case "Prelim. Cancel":
-      return "bg-[#457EFF] text-[#457EFF]";
+    case 'Off Air':
+      return 'bg-[#F4485D] text-[#F4485D]';
+    case 'On Air':
+      return 'bg-[#16AE65] text-[#16AE65]';
+    case 'Prelim. Cancel':
+      return 'bg-[#457EFF] text-[#457EFF]';
     default:
-      return "";
+      return '';
   }
 };
 
@@ -61,14 +61,14 @@ const Identifikasi = () => {
   const handleDelete = async (id) => {
     try {
       if (!id) {
-        console.log("Missing identification ID.");
+        console.log('Missing identification ID.');
         return;
       }
       await api.delete(`/identifikasi.php?id=${id}`);
       Swal.fire({
-        icon: "success",
-        title: "Item Deleted",
-        text: "The item has been successfully deleted.",
+        icon: 'success',
+        title: 'Item Deleted',
+        text: 'The item has been successfully deleted.',
         focusConfirm: false,
       });
       setTimeout(() => {
@@ -76,9 +76,9 @@ const Identifikasi = () => {
       }, 1500);
     } catch (error) {
       Swal.fire({
-        icon: "error",
-        title: "Error",
-        text: "An error occurred while deleting the item.",
+        icon: 'error',
+        title: 'Error',
+        text: 'An error occurred while deleting the item.',
       });
     }
   };
@@ -87,15 +87,21 @@ const Identifikasi = () => {
     <div>
       <div>
         <Link
+          data-tooltip-id="tip"
           to="/monitoring/add"
-          className="flex gap-2 hover:underline mt-[15px] text-sm pl-6 items-center"
-        >
+          className="flex w-52 gap-2 hover:underline mt-[15px] text-sm pl-6 items-center">
           <span className="bg-main-color w-[32px] text-[18px] h-[32px] flex justify-center items-center rounded-full text-white">
             <FaPlus />
           </span>
           Tambah Data
         </Link>
       </div>
+      <ReactTooltip
+        style={{ width: 'auto' }}
+        id="tip"
+        place="bottom-start"
+        content="Tambah Data Monitoring"
+      />
       <div className="p-11 bg-[#F6F8FF] rounded-[40px] mt-10">
         <div className="overflow-auto rounded-[40px]">
           <table className="min-w-full bg-[#fff]">
@@ -167,13 +173,11 @@ const Identifikasi = () => {
                       <div
                         className={`flex items-center px-3 justify-center gap-1 rounded-full py-2 bg-opacity-25 text-xs font-medium ${getStatus(
                           item.status
-                        )}`}
-                      >
+                        )}`}>
                         <div
                           className={`rounded-full ${getStatus(
                             item.status
-                          )} w-[8px] h-[8px] font-medium`}
-                        ></div>
+                          )} w-[8px] h-[8px] font-medium`}></div>
                         <p>{item.status}</p>
                       </div>
                     )}
@@ -184,8 +188,7 @@ const Identifikasi = () => {
                   </button> */}
                     <button
                       onClick={() => handleDelete(item.id)}
-                      className="p-3 rounded-full bg-[#FF0000] bg-opacity-10"
-                    >
+                      className="p-3 rounded-full bg-[#FF0000] bg-opacity-10">
                       <MdDelete className="text-lg text-[#ff0000]" />
                     </button>
                   </td>
