@@ -13,8 +13,9 @@ import { RiPassValidLine } from "react-icons/ri";
 import { IoFolderOpenOutline } from "react-icons/io5";
 import { FaUser } from "react-icons/fa6";
 import { AiOutlineMenuUnfold, AiOutlineMenuFold } from "react-icons/ai";
-import api, { baseUrl } from '../../services/api';
+import  { baseUrl } from '../../services/api';
 import { ProfileContext } from '../../App';
+import { Tooltip as ReactTooltip } from "react-tooltip";
 
 const Sidebar = () => {
   const [isSimple, setIsSimple] = useState(false);
@@ -24,36 +25,42 @@ const Sidebar = () => {
       largeIcon: LargeDashboard,
       navTitle: 'Dashboard',
       navTo: '/dashboard',
+      navDev: 'Lihat ringkasan data yang informatif dengan fitur Dashboard SIGARDA'
     },
     {
       icon: <TbHeartRateMonitor />,
       largeIcon: LargeDashboard,
       navTitle: 'Monitoring',
       navTo: 'monitoring',
+      navDev: 'Lihat data target monitoring, identifikasi dan database SIMS'
     },
     {
       icon: <FiRadio />,
       largeIcon: LargeDashboard,
       navTitle: 'Pengukuran',
       navTo: 'pengukuran',
+      navDev: 'Lihat data hasil pengukuran stasiun radio AM, FM dan DVB-T'
     },
     {
       icon: <RiPassValidLine />,
       largeIcon: LargeDashboard,
       navTitle: 'Validasi ISR',
       navTo: 'validasi',
+      navDev: 'Lihat data validasi ISR Microwave Link dan Non-Microwave Link'
     },
     {
       icon: <IoFolderOpenOutline />,
       largeIcon: LargeDashboard,
       navTitle: 'Dokumen',
       navTo: 'dokumen',
+      navDev: 'Akses dan kelola dokumen SOP, Template dan file terkait'
     },
     {
       icon: <FaUser />,
       largeIcon: LargeDashboard,
       navTitle: 'Akun',
       navTo: 'akun',
+      navDev: 'Atur dan kelola akun Anda'
     },
   ];
   const [navMenu, setNavMenu] = useState(navList);
@@ -96,9 +103,10 @@ const Sidebar = () => {
                 </div>
                 <div className="py-4">
                   {navMenu.map((val) => (
-                    <NavLink
+                     <NavLink
                       key={val.navTitle}
                       to={val.navTo}
+                      data-tooltip-id={val.navTitle}
                       className={({ isActive }) =>
                         `${isActive
                           ? 'bg-slate-200 text-main-color font-semibold'
@@ -107,6 +115,12 @@ const Sidebar = () => {
                       }>
                       <div className=''>{val.icon}</div>
                       <div>{val.navTitle}</div>
+                      <ReactTooltip
+                        style={{width: '250px' , textAlign: 'left', zIndex: '1' , fontWeight: '400' }}
+                        id={val.navTitle}
+                        place="left"
+                        content={val.navDev}
+                      />
                     </NavLink>
                   ))}
                 </div>
@@ -127,9 +141,11 @@ const Sidebar = () => {
         <div className="w-[70px] h-screen my-auto px-4 rounded-r-2xl bg-slate-100 flex justify-center items-center">
           <div>
             {navList.map((val) => (
-              <NavLink
+              <>
+                <NavLink
                 key={val.navTitle}
                 to={val.navTo}
+                data-tooltip-id={val.navTitle}
                 className={({ isActive }) =>
                   `${isActive
                     ? 'bg-slate-300 text-main-color font-semibold'
@@ -138,7 +154,15 @@ const Sidebar = () => {
                 }>
                 <div className=''>{val.icon}</div>
               </NavLink>
+              <ReactTooltip
+                 style={{width: '250px' , textAlign: 'left', zIndex: '1' , fontWeight: '400' }}
+                 id={val.navTitle}
+                 place="left"
+                 content={val.navDev}
+              />
+              </>
             ))}
+            
             <div
               className="flex justify-center pt-6"
               onClick={() => setIsSimple(false)}>
